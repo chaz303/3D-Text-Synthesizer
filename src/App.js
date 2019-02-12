@@ -7,6 +7,8 @@ import React from "react";
 import "./index.css";
 //import ReactDOM from "react-dom";
 
+// if playing === false then current equals selected start or stop
+
 class VRScene extends React.Component {
   constructor(props) {
     super(props);
@@ -14,16 +16,22 @@ class VRScene extends React.Component {
       inputValue: "Zexty Ext",
       cameraZoffset: -10,
       textHueBeg: 200,
-      textHueEnd: 200,
-      textSatBeg: 100,
+      textHueCur: 200,
+      textHueEnd: 100,
+      textSatBeg: 90,
+      textSatCur: 90,
       textSatEnd: 100,
       textLumBeg: 70,
-      textLumEnd: 70,
-      textBevelBeg: 0,
+      textLumCur: 70,
+      textLumEnd: 90,
+      textBevelBeg: 15,
+      textBevelCur: 15,
       textBevelEnd: 0,
-      textRotX: 0,
-      textRotY: 0,
-      textRotZ: 0
+      textAlignX: -4,
+      textAlignY: 1,
+      textAlignZBeg: 3,
+      textAlignZCur: 30,
+      textAlignZEnd: -110
     };
   }
   updateInputValue(evt) {
@@ -61,19 +69,24 @@ class VRScene extends React.Component {
       textLumEnd: evt.target.value
     });
   }
-  updateTextRotX(evt) {
+  updateTextAlignX(evt) {
     this.setState({
-      textRotX: evt.target.value
+      textAlignX: evt.target.value
     });
   }
-  updateTextRotY(evt) {
+  updateTextAlignY(evt) {
     this.setState({
-      textRotY: evt.target.value
+      textAlignY: evt.target.value
     });
   }
-  updateTextRotZ(evt) {
+  updateTextAlignZBeg(evt) {
     this.setState({
-      textRotZ: evt.target.value
+      textAlignZBeg: evt.target.value * -1
+    });
+  }
+  updateTextAlignZEnd(evt) {
+    this.setState({
+      textAlignZEnd: evt.target.value * -1
     });
   }
   updateTextBevelBeg(evt) {
@@ -107,6 +120,7 @@ class VRScene extends React.Component {
               type="range"
               min="1"
               max="360"
+              value={this.state.textHueBeg}
               className="slider"
               onChange={evt => this.updateTextHueBeg(evt)}
             />
@@ -115,6 +129,7 @@ class VRScene extends React.Component {
               type="range"
               min="1"
               max="360"
+              value={this.state.textHueEnd}
               className="slider"
               onChange={evt => this.updateTextHueEnd(evt)}
             />
@@ -126,6 +141,7 @@ class VRScene extends React.Component {
               type="range"
               min="1"
               max="100"
+              value={this.state.textSatBeg}
               className="slider"
               id="bgSat"
               onChange={evt => this.updateTextSatBeg(evt)}
@@ -135,6 +151,7 @@ class VRScene extends React.Component {
               type="range"
               min="1"
               max="100"
+              value={this.state.textSatEnd}
               className="slider"
               id="bgSat"
               onChange={evt => this.updateTextSatEnd(evt)}
@@ -147,6 +164,7 @@ class VRScene extends React.Component {
               type="range"
               min="1"
               max="100"
+              value={this.state.textLumBeg}
               className="slider"
               id="bgLum"
               onChange={evt => this.updateTextLumBeg(evt)}
@@ -156,55 +174,73 @@ class VRScene extends React.Component {
               type="range"
               min="1"
               max="100"
+              value={this.state.textLumEnd}
               className="slider"
               id="bgLum"
               onChange={evt => this.updateTextLumEnd(evt)}
             />
           </div>
-          {/* <input
-          type="range"
-          min="-360"
-          max="360"
-          className="slider"
-          id="txtRotX"
-          onChange={evt => this.updateTextRotX(evt)}
-        />
-        <input
-          type="range"
-          min="-360"
-          max="360"
-          className="slider"
-          id="txtRotY"
-          onChange={evt => this.updateTextRotY(evt)}
-        />
-        <input
-          type="range"
-          min="-360"
-          max="360"
-          className="slider"
-          id="txtRotZ"
-          onChange={evt => this.updateTextRotZ(evt)}
-        /> */}
-
+          <div className="panelElem">
+            Zoom:
+            <br />
+            <input
+              type="range"
+              min="-110"
+              max="50"
+              value={this.state.textAlignZBeg * -1}
+              className="slider"
+              onChange={evt => this.updateTextAlignZBeg(evt)}
+            />
+            <br />
+            <input
+              type="range"
+              min="-110"
+              max="50"
+              value={this.state.textAlignZEnd * -1}
+              className="slider"
+              onChange={evt => this.updateTextAlignZEnd(evt)}
+            />
+          </div>
           <div className="panelElem">
             Depth:
             <br />
             <input
               type="range"
               min="0"
-              max="50"
+              max="20"
+              value={this.state.textBevelBeg}
               className="slider"
-              id="txtBvl"
               onChange={evt => this.updateTextBevelBeg(evt)}
             />
             <br />
             <input
               type="range"
               min="0"
-              max="50"
+              max="20"
+              value={this.state.textBevelEnd}
               className="slider"
-              id="txtBvl"
               onChange={evt => this.updateTextBevelEnd(evt)}
+            />
+          </div>
+          <div className="panelElem">
+            Align X:
+            <br />
+            <input
+              type="range"
+              min="-15"
+              max="15"
+              value={this.state.textAlignX}
+              className="slider"
+              onChange={evt => this.updateTextAlignX(evt)}
+            />
+            Align Y:
+            <input
+              type="range"
+              min="-15"
+              max="15"
+              value={this.state.textAlignY}
+              className="slider"
+              onChange={evt => this.updateTextAlignY(evt)}
             />
           </div>
         </div>
@@ -223,10 +259,9 @@ class VRScene extends React.Component {
               />
             </a-assets>
             <Entity
-              position={`-4 2 ${this.state.textBevelBeg * -1 - 4}`}
-              rotation={`${this.state.textRotX} ${this.state.textRotY} ${
-                this.state.textRotZ
-              }`}
+              position={`${this.state.textAlignX} ${
+                this.state.textAlignY
+              } ${this.state.textBevelBeg * -1 - this.state.textAlignZBeg}`}
               text-geometry={`bevelEnabled:true;bevelSize:0.01;bevelThickness:${
                 this.state.textBevelBeg
               };curveSegments:6;height:0.5;size:1.5;font: #optimerBoldFont;value:${

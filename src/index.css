@@ -11,11 +11,12 @@ body {
 
 input {
   width: 140px;
-  background-color: #ccc;
+  background-color: #eee;
 }
 
 .panel {
   display: flex;
+  flex-wrap: wrap;
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
   color: white;
