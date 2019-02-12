@@ -13,13 +13,17 @@ class VRScene extends React.Component {
     this.state = {
       inputValue: "Zexty Ext",
       cameraZoffset: -10,
-      textHue: 200,
-      textSat: 100,
-      textLum: 70,
+      textHueBeg: 200,
+      textHueEnd: 200,
+      textSatBeg: 100,
+      textSatEnd: 100,
+      textLumBeg: 70,
+      textLumEnd: 70,
+      textBevelBeg: 0,
+      textBevelEnd: 0,
       textRotX: 0,
       textRotY: 0,
-      textRotZ: 0,
-      textBevel: 0
+      textRotZ: 0
     };
   }
   updateInputValue(evt) {
@@ -27,19 +31,34 @@ class VRScene extends React.Component {
       inputValue: evt.target.value
     });
   }
-  updateTextHue(evt) {
+  updateTextHueBeg(evt) {
     this.setState({
-      textHue: evt.target.value
+      textHueBeg: evt.target.value
     });
   }
-  updateTextSat(evt) {
+  updateTextHueEnd(evt) {
     this.setState({
-      textSat: evt.target.value
+      textHueEnd: evt.target.value
     });
   }
-  updateTextLum(evt) {
+  updateTextSatBeg(evt) {
     this.setState({
-      textLum: evt.target.value
+      textSatBeg: evt.target.value
+    });
+  }
+  updateTextSatEnd(evt) {
+    this.setState({
+      textSatEnd: evt.target.value
+    });
+  }
+  updateTextLumBeg(evt) {
+    this.setState({
+      textLumBeg: evt.target.value
+    });
+  }
+  updateTextLumEnd(evt) {
+    this.setState({
+      textLumEnd: evt.target.value
     });
   }
   updateTextRotX(evt) {
@@ -57,45 +76,92 @@ class VRScene extends React.Component {
       textRotZ: evt.target.value
     });
   }
-  updateTextBevel(evt) {
+  updateTextBevelBeg(evt) {
     this.setState({
-      textBevel: evt.target.value
+      textBevelBeg: evt.target.value
+    });
+  }
+  updateTextBevelEnd(evt) {
+    this.setState({
+      textBevelEnd: evt.target.value
     });
   }
   render() {
     //console.log(this.state.textBevel);
     return (
       <div>
-        <input
-          type="text"
-          value={this.state.inputValue}
-          onChange={evt => this.updateInputValue(evt)}
-        />
-        <input
-          type="range"
-          min="1"
-          max="360"
-          className="slider"
-          id="bgHue"
-          onChange={evt => this.updateTextHue(evt)}
-        />
-        <input
-          type="range"
-          min="1"
-          max="100"
-          className="slider"
-          id="bgSat"
-          onChange={evt => this.updateTextSat(evt)}
-        />
-        <input
-          type="range"
-          min="1"
-          max="100"
-          className="slider"
-          id="bgLum"
-          onChange={evt => this.updateTextLum(evt)}
-        />
-        <input
+        <div className="panel">
+          <div className="panelElem">
+            Text:
+            <br />
+            <input
+              type="text"
+              value={this.state.inputValue}
+              onChange={evt => this.updateInputValue(evt)}
+            />
+          </div>
+          <div className="panelElem">
+            Hue:
+            <br />
+            <input
+              type="range"
+              min="1"
+              max="360"
+              className="slider"
+              onChange={evt => this.updateTextHueBeg(evt)}
+            />
+            <br />
+            <input
+              type="range"
+              min="1"
+              max="360"
+              className="slider"
+              onChange={evt => this.updateTextHueEnd(evt)}
+            />
+          </div>
+          <div className="panelElem">
+            Saturation:
+            <br />
+            <input
+              type="range"
+              min="1"
+              max="100"
+              className="slider"
+              id="bgSat"
+              onChange={evt => this.updateTextSatBeg(evt)}
+            />
+            <br />
+            <input
+              type="range"
+              min="1"
+              max="100"
+              className="slider"
+              id="bgSat"
+              onChange={evt => this.updateTextSatEnd(evt)}
+            />
+          </div>
+          <div className="panelElem">
+            Luminance:
+            <br />
+            <input
+              type="range"
+              min="1"
+              max="100"
+              className="slider"
+              id="bgLum"
+              onChange={evt => this.updateTextLumBeg(evt)}
+            />
+            <br />
+            <input
+              type="range"
+              min="1"
+              max="100"
+              className="slider"
+              id="bgLum"
+              onChange={evt => this.updateTextLumEnd(evt)}
+            />
+          </div>
+          {/* <input
           type="range"
           min="-360"
           max="360"
@@ -118,21 +184,36 @@ class VRScene extends React.Component {
           className="slider"
           id="txtRotZ"
           onChange={evt => this.updateTextRotZ(evt)}
-        />
-        <input
-          type="range"
-          min="0"
-          max="50"
-          className="slider"
-          id="txtBvl"
-          onChange={evt => this.updateTextBevel(evt)}
-        />
+        /> */}
+
+          <div className="panelElem">
+            Depth:
+            <br />
+            <input
+              type="range"
+              min="0"
+              max="50"
+              className="slider"
+              id="txtBvl"
+              onChange={evt => this.updateTextBevelBeg(evt)}
+            />
+            <br />
+            <input
+              type="range"
+              min="0"
+              max="50"
+              className="slider"
+              id="txtBvl"
+              onChange={evt => this.updateTextBevelEnd(evt)}
+            />
+          </div>
+        </div>
         <div className="a-frame-scene-box">
           <Scene
             embedded
             background="color: black"
             effects="bloom, fxaa"
-            bloom="radius: 0.33"
+            bloom="radius: 0.4"
             fxaa
           >
             <a-assets>
@@ -142,19 +223,19 @@ class VRScene extends React.Component {
               />
             </a-assets>
             <Entity
-              position={`-4 2 ${this.state.textBevel * -1 - 4}`}
+              position={`-4 2 ${this.state.textBevelBeg * -1 - 4}`}
               rotation={`${this.state.textRotX} ${this.state.textRotY} ${
                 this.state.textRotZ
               }`}
               text-geometry={`bevelEnabled:true;bevelSize:0.01;bevelThickness:${
-                this.state.textBevel
+                this.state.textBevelBeg
               };curveSegments:6;height:0.5;size:1.5;font: #optimerBoldFont;value:${
                 this.state.inputValue
               }`}
-              material={`color: hsla(${this.state.textHue}, ${
-                this.state.textSat
+              material={`color: hsla(${this.state.textHueBeg}, ${
+                this.state.textSatBeg
               }%, ${
-                this.state.textLum
+                this.state.textLumBeg
               }%) metalness:1.0;roughness:0.05;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
             />
           </Scene>
