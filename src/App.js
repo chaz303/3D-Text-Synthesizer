@@ -1,6 +1,7 @@
 import "aframe";
 import "aframe-particle-system-component";
 import "aframe-text-geometry-component";
+import "aframe-effects";
 import { Entity, Scene } from "aframe-react";
 import React from "react";
 import "./index.css";
@@ -11,12 +12,14 @@ class VRScene extends React.Component {
     super(props);
     this.state = {
       inputValue: "Zexty Ext",
+      cameraZoffset: -10,
       textHue: 200,
       textSat: 100,
       textLum: 70,
       textRotX: 0,
       textRotY: 0,
-      textRotZ: 0
+      textRotZ: 0,
+      textBevel: 0
     };
   }
   updateInputValue(evt) {
@@ -54,7 +57,13 @@ class VRScene extends React.Component {
       textRotZ: evt.target.value
     });
   }
+  updateTextBevel(evt) {
+    this.setState({
+      textBevel: evt.target.value
+    });
+  }
   render() {
+    //console.log(this.state.textBevel);
     return (
       <div>
         <input
@@ -110,8 +119,22 @@ class VRScene extends React.Component {
           id="txtRotZ"
           onChange={evt => this.updateTextRotZ(evt)}
         />
+        <input
+          type="range"
+          min="0"
+          max="50"
+          className="slider"
+          id="txtBvl"
+          onChange={evt => this.updateTextBevel(evt)}
+        />
         <div className="a-frame-scene-box">
-          <Scene embedded background="color: black">
+          <Scene
+            embedded
+            background="color: black"
+            effects="bloom, fxaa"
+            bloom="radius: 0.33"
+            fxaa
+          >
             <a-assets>
               <a-asset-item
                 id="optimerBoldFont"
@@ -119,11 +142,13 @@ class VRScene extends React.Component {
               />
             </a-assets>
             <Entity
-              position="-8 2 -10"
+              position={`-4 2 ${this.state.textBevel * -1 - 4}`}
               rotation={`${this.state.textRotX} ${this.state.textRotY} ${
                 this.state.textRotZ
               }`}
-              text-geometry={`bevelEnabled:true;bevelSize:0.05;bevelThickness:0.1;curveSegments:1;height:0.5;size:1.5;font: #optimerBoldFont;value:${
+              text-geometry={`bevelEnabled:true;bevelSize:0.01;bevelThickness:${
+                this.state.textBevel
+              };curveSegments:6;height:0.5;size:1.5;font: #optimerBoldFont;value:${
                 this.state.inputValue
               }`}
               material={`color: hsla(${this.state.textHue}, ${
