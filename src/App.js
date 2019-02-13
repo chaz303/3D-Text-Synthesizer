@@ -15,15 +15,18 @@ class VRScene extends React.Component {
     this.state = {
       inputValue: "Zexty Ext",
       vueIsIn: true,
+      isPlaying: false,
+      numberOfFrames: 20,
+      frame: 1,
       textHueBeg: 200,
       textHueCur: 200,
       textHueEnd: 100,
       textSatBeg: 90,
       textSatCur: 90,
       textSatEnd: 100,
-      textLumBeg: 70,
-      textLumCur: 70,
-      textLumEnd: 90,
+      textLumBeg: 80,
+      textLumCur: 80,
+      textLumEnd: 80,
       textBevelBeg: 15,
       textBevelCur: 15,
       textBevelEnd: 15,
@@ -38,28 +41,77 @@ class VRScene extends React.Component {
       textAlignZEnd: 2
     };
     this.updateAllValues = this.updateAllValues.bind(this);
+    this.updateVueIsIn = this.updateVueIsIn.bind(this);
   }
-  updateAllValues(evt) {
-    if (this.state.vueIsIn === true) {
+  playFun() {
+    if (this.state.frame <= this.state.numberOfFrames) {
       this.setState({
-        textHueCur: this.state.textHueBeg,
-        textSatCur: this.state.textSatBeg,
-        textLumCur: this.state.textLumBeg,
-        textBevelCur: this.state.textBevelBeg,
-        textAlignXCur: this.state.textAlignXBeg,
-        textAlignYCur: this.state.textAlignYBeg,
-        textAlignZCur: this.state.textAlignZBeg
+        frame: this.state.frame + 1
       });
     } else {
       this.setState({
-        textHueCur: this.state.textHueEnd,
-        textSatCur: this.state.textSatEnd,
-        textLumCur: this.state.textLumEnd,
-        textBevelCur: this.state.textBevelEnd,
-        textAlignXCur: this.state.textAlignXEnd,
-        textAlignYCur: this.state.textAlignYEnd,
-        textAlignZCur: this.state.textAlignZEnd
+        frame: 1
       });
+    }
+    this.setState({
+      textHueCur:
+        this.state.textHueBeg +
+        ((this.state.textHueBeg - this.state.textHueEnd) /
+          this.state.numberOfFrames) *
+          this.state.frame,
+      textSatCur:
+        this.state.textSatBeg +
+        ((this.state.textSatBeg - this.state.textSatEnd) /
+          this.state.numberOfFrames) *
+          this.state.frame,
+      textLumCur:
+        this.state.textLumBeg +
+        ((this.state.textLumBeg - this.state.textLumEnd) /
+          this.state.numberOfFrames) *
+          this.state.frame,
+      textBevelCur:
+        this.state.textBevelBeg +
+        ((this.state.textBevelBeg - this.state.textBevelEnd) /
+          this.state.numberOfFrames) *
+          this.state.frame
+      // textAlignXCur:
+      //   this.state.textAlignXBeg +
+      //   ((this.state.textAlignXBeg - this.state.textAlignXEnd) /
+      //     this.state.numberOfFrames) *
+      //     this.state.frame,
+      // textAlignYCur: this.state.textAlignYCur,
+      // textAlignZCur:
+      //   this.state.textAlignZCur +
+      //   ((this.state.textAlignZBeg - this.state.textAlignZEnd) /
+      //     this.state.numberOfFrames) *
+      //     this.state.frame
+    });
+  }
+  updateAllValues(evt) {
+    if (this.state.isPlaying === true) {
+      this.playFun();
+    } else {
+      if (this.state.vueIsIn === true) {
+        this.setState({
+          textHueCur: this.state.textHueBeg,
+          textSatCur: this.state.textSatBeg,
+          textLumCur: this.state.textLumBeg,
+          textBevelCur: this.state.textBevelBeg,
+          textAlignXCur: this.state.textAlignXBeg,
+          textAlignYCur: this.state.textAlignYBeg,
+          textAlignZCur: this.state.textAlignZBeg
+        });
+      } else {
+        this.setState({
+          textHueCur: this.state.textHueEnd,
+          textSatCur: this.state.textSatEnd,
+          textLumCur: this.state.textLumEnd,
+          textBevelCur: this.state.textBevelEnd,
+          textAlignXCur: this.state.textAlignXEnd,
+          textAlignYCur: this.state.textAlignYEnd,
+          textAlignZCur: this.state.textAlignZEnd
+        });
+      }
     }
   }
   updateVueIsIn(evt) {
@@ -67,6 +119,12 @@ class VRScene extends React.Component {
       vueIsIn: !this.state.vueIsIn
     });
     console.log(this.state.vueIsIn);
+  }
+  updateIsPlaying(evt) {
+    this.setState({
+      isPlaying: !this.state.isPlaying,
+      frame: 1
+    });
   }
   updateInputValue(evt) {
     this.setState({
@@ -76,11 +134,6 @@ class VRScene extends React.Component {
   updateTextHueBeg(evt) {
     this.setState({
       textHueBeg: evt.target.value
-    });
-  }
-  updateTextHueCur(evt) {
-    this.setState({
-      textHueCur: evt.target.value
     });
   }
   updateTextHueEnd(evt) {
@@ -93,22 +146,12 @@ class VRScene extends React.Component {
       textSatBeg: evt.target.value
     });
   }
-  updateTextSatCur(evt) {
-    this.setState({
-      textSatCur: evt.target.value
-    });
-  }
   updateTextSatEnd(evt) {
     this.setState({
       textSatEnd: evt.target.value
     });
   }
   updateTextLumBeg(evt) {
-    this.setState({
-      textLumBeg: evt.target.value
-    });
-  }
-  updateTextLumCur(evt) {
     this.setState({
       textLumBeg: evt.target.value
     });
@@ -123,11 +166,6 @@ class VRScene extends React.Component {
       textAlignXBeg: evt.target.value
     });
   }
-  updateTextAlignXCur(evt) {
-    this.setState({
-      textAlignXCur: evt.target.value
-    });
-  }
   updateTextAlignXEnd(evt) {
     this.setState({
       textAlignXEnd: evt.target.value
@@ -136,11 +174,6 @@ class VRScene extends React.Component {
   updateTextAlignYBeg(evt) {
     this.setState({
       textAlignYBeg: evt.target.value
-    });
-  }
-  updateTextAlignYCur(evt) {
-    this.setState({
-      textAlignYCur: evt.target.value
     });
   }
   updateTextAlignYEnd(evt) {
@@ -153,11 +186,6 @@ class VRScene extends React.Component {
       textAlignZBeg: evt.target.value * -1
     });
   }
-  updateTextAlignZCur(evt) {
-    this.setState({
-      textAlignZCur: evt.target.value * -1
-    });
-  }
   updateTextAlignZEnd(evt) {
     this.setState({
       textAlignZEnd: evt.target.value * -1
@@ -168,18 +196,13 @@ class VRScene extends React.Component {
       textBevelBeg: evt.target.value
     });
   }
-  updateTextBevelCur(evt) {
-    this.setState({
-      textBevelCur: evt.target.value
-    });
-  }
   updateTextBevelEnd(evt) {
     this.setState({
       textBevelEnd: evt.target.value
     });
   }
   componentDidMount() {
-    setInterval(this.updateAllValues, 10);
+    setInterval(this.updateAllValues, 33);
   }
   render() {
     return (
@@ -349,8 +372,17 @@ class VRScene extends React.Component {
             <br />
             <input
               type="checkbox"
-              value={this.state.vueIsIn}
               onChange={evt => this.updateVueIsIn(evt)}
+              checked={this.state.vueIsIn ? "checked" : null}
+            />
+          </div>
+          <div className="panelElem">
+            Play/Stop:
+            <br />
+            <input
+              type="checkbox"
+              onChange={evt => this.updateIsPlaying(evt)}
+              checked={this.state.isPlaying ? "checked" : null}
             />
           </div>
           <div className="panelElem">
@@ -385,7 +417,7 @@ class VRScene extends React.Component {
                 this.state.textSatCur
               }%, ${
                 this.state.textLumCur
-              }%) metalness:1.0;roughness:0.05;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
+              }%); metalness:0.2;roughness:0.05;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
             />
           </Scene>
         </div>
