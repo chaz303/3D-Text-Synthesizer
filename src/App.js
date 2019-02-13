@@ -17,16 +17,16 @@ class VRScene extends React.Component {
       vueIsIn: true,
       isPlaying: true,
       numberOfFrames: 60,
-      frame: 1,
-      textHueBeg: 200,
-      textHueCur: 200,
-      textHueEnd: 60,
+      frame: 0,
+      textHueBeg: 50,
+      textHueCur: 50,
+      textHueEnd: 250,
       textSatBeg: 80,
       textSatCur: 80,
       textSatEnd: 100,
-      textLumBeg: 75,
-      textLumCur: 75,
-      textLumEnd: 75,
+      textLumBeg: 65,
+      textLumCur: 65,
+      textLumEnd: 80,
       textBevelBeg: 15,
       textBevelCur: 15,
       textBevelEnd: 15,
@@ -36,56 +36,56 @@ class VRScene extends React.Component {
       textAlignYBeg: 1,
       textAlignYCur: 1,
       textAlignYEnd: 1,
-      textAlignZBeg: 6,
-      textAlignZCur: 6,
-      textAlignZEnd: 12
+      textAlignZBeg: 50,
+      textAlignZCur: 50,
+      textAlignZEnd: 0
     };
     this.updateAllValues = this.updateAllValues.bind(this);
     this.updateVueIsIn = this.updateVueIsIn.bind(this);
   }
   playFun() {
-    if (this.state.frame <= this.state.numberOfFrames) {
+    if (this.state.frame < this.state.numberOfFrames) {
       this.setState({
         frame: this.state.frame + 1
       });
     } else {
       this.setState({
-        frame: 1
+        frame: 0
       });
     }
     this.setState({
       textHueCur:
-        Number(this.state.textHueBeg) +
+        Number(this.state.textHueBeg) -
         ((this.state.textHueBeg - this.state.textHueEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
       textSatCur:
-        Number(this.state.textSatBeg) +
+        Number(this.state.textSatBeg) -
         ((this.state.textSatBeg - this.state.textSatEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
       textLumCur:
-        Number(this.state.textLumBeg) +
+        Number(this.state.textLumBeg) -
         ((this.state.textLumBeg - this.state.textLumEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
       textBevelCur:
-        Number(this.state.textBevelBeg) +
+        Number(this.state.textBevelBeg) -
         ((this.state.textBevelBeg - this.state.textBevelEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
       textAlignXCur:
-        Number(this.state.textAlignXBeg) +
+        Number(this.state.textAlignXBeg) -
         ((this.state.textAlignXBeg - this.state.textAlignXEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
       textAlignYCur:
-        Number(this.state.textAlignYBeg) +
+        Number(this.state.textAlignYBeg) -
         ((this.state.textAlignYBeg - this.state.textAlignYEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
       textAlignZCur:
-        Number(this.state.textAlignZBeg) +
+        Number(this.state.textAlignZBeg) -
         ((this.state.textAlignZBeg - this.state.textAlignZEnd) /
           this.state.numberOfFrames) *
           this.state.frame
