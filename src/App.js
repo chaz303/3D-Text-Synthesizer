@@ -14,7 +14,7 @@ class VRScene extends React.Component {
     super(props);
     this.state = {
       inputValue: "Zexty Ext",
-      cameraZoffset: -10,
+      vueIsIn: true,
       textHueBeg: 200,
       textHueCur: 200,
       textHueEnd: 100,
@@ -26,7 +26,7 @@ class VRScene extends React.Component {
       textLumEnd: 90,
       textBevelBeg: 15,
       textBevelCur: 15,
-      textBevelEnd: 0,
+      textBevelEnd: 15,
       textAlignXBeg: -4,
       textAlignXCur: -4,
       textAlignXEnd: -4,
@@ -34,13 +34,13 @@ class VRScene extends React.Component {
       textAlignYCur: 1,
       textAlignYEnd: 1,
       textAlignZBeg: 3,
-      textAlignZCur: 30,
-      textAlignZEnd: -110
+      textAlignZCur: 3,
+      textAlignZEnd: 2
     };
     this.updateAllValues = this.updateAllValues.bind(this);
   }
   updateAllValues(evt) {
-    if (true) {
+    if (this.state.vueIsIn === true) {
       this.setState({
         textHueCur: this.state.textHueBeg,
         textSatCur: this.state.textSatBeg,
@@ -50,7 +50,23 @@ class VRScene extends React.Component {
         textAlignYCur: this.state.textAlignYBeg,
         textAlignZCur: this.state.textAlignZBeg
       });
+    } else {
+      this.setState({
+        textHueCur: this.state.textHueEnd,
+        textSatCur: this.state.textSatEnd,
+        textLumCur: this.state.textLumEnd,
+        textBevelCur: this.state.textBevelEnd,
+        textAlignXCur: this.state.textAlignXEnd,
+        textAlignYCur: this.state.textAlignYEnd,
+        textAlignZCur: this.state.textAlignZEnd
+      });
     }
+  }
+  updateVueIsIn(evt) {
+    this.setState({
+      vueIsIn: !this.state.vueIsIn
+    });
+    console.log(this.state.vueIsIn);
   }
   updateInputValue(evt) {
     this.setState({
@@ -163,7 +179,7 @@ class VRScene extends React.Component {
     });
   }
   componentDidMount() {
-    setInterval(this.updateAllValues, 30);
+    setInterval(this.updateAllValues, 10);
   }
   render() {
     return (
@@ -307,7 +323,6 @@ class VRScene extends React.Component {
               onChange={evt => this.updateTextLumEnd(evt)}
             />
           </div>
-
           <div className="panelElem">
             Depth:
             <br />
@@ -327,6 +342,15 @@ class VRScene extends React.Component {
               value={this.state.textBevelEnd}
               className="slider"
               onChange={evt => this.updateTextBevelEnd(evt)}
+            />
+          </div>
+          <div className="panelElem">
+            In/Out:
+            <br />
+            <input
+              type="checkbox"
+              value={this.state.vueIsIn}
+              onChange={evt => this.updateVueIsIn(evt)}
             />
           </div>
           <div className="panelElem">
