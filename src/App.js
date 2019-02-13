@@ -37,11 +37,18 @@ class VRScene extends React.Component {
       textAlignZCur: 30,
       textAlignZEnd: -110
     };
+    this.updateAllValues = this.updateAllValues.bind(this);
   }
   updateAllValues(evt) {
-    if (evt) {
+    if (true) {
       this.setState({
-        textHueCur: this.state.textHueBeg
+        textHueCur: this.state.textHueBeg,
+        textSatCur: this.state.textSatBeg,
+        textLumCur: this.state.textLumBeg,
+        textBevelCur: this.state.textBevelBeg,
+        textAlignXCur: this.state.textAlignXBeg,
+        textAlignYCur: this.state.textAlignYBeg,
+        textAlignZCur: this.state.textAlignZBeg
       });
     }
   }
@@ -155,7 +162,9 @@ class VRScene extends React.Component {
       textBevelEnd: evt.target.value
     });
   }
-  //this.updateAllValues(true);
+  componentDidMount() {
+    setInterval(this.updateAllValues, 30);
+  }
   render() {
     return (
       <div>
@@ -340,18 +349,18 @@ class VRScene extends React.Component {
               />
             </a-assets>
             <Entity
-              position={`${this.state.textAlignXBeg} ${
-                this.state.textAlignYBeg
-              } ${this.state.textBevelBeg * -1 - this.state.textAlignZBeg}`}
+              position={`${this.state.textAlignXCur} ${
+                this.state.textAlignYCur
+              } ${this.state.textBevelCur * -1 - this.state.textAlignZCur}`}
               text-geometry={`bevelEnabled:true;bevelSize:0.01;bevelThickness:${
-                this.state.textBevelBeg
+                this.state.textBevelCur
               };curveSegments:6;height:0.5;size:1.5;font: #optimerBoldFont;value:${
                 this.state.inputValue
               }`}
               material={`color: hsla(${this.state.textHueCur}, ${
-                this.state.textSatBeg
+                this.state.textSatCur
               }%, ${
-                this.state.textLumBeg
+                this.state.textLumCur
               }%) metalness:1.0;roughness:0.05;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
             />
           </Scene>
