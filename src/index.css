@@ -24,8 +24,9 @@ input {
 
 .panelElem {
   border: 1px solid #444;
+  justify-content: space-between;
   width: 150px;
-  padding: 5px;
+  padding: 3px;
   margin: 3px;
 }
 
