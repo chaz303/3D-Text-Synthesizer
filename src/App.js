@@ -15,18 +15,18 @@ class VRScene extends React.Component {
     this.state = {
       inputValue: "Zexty Ext",
       vueIsIn: true,
-      isPlaying: false,
-      numberOfFrames: 20,
+      isPlaying: true,
+      numberOfFrames: 60,
       frame: 1,
       textHueBeg: 200,
       textHueCur: 200,
-      textHueEnd: 100,
-      textSatBeg: 90,
-      textSatCur: 90,
+      textHueEnd: 60,
+      textSatBeg: 80,
+      textSatCur: 80,
       textSatEnd: 100,
-      textLumBeg: 80,
-      textLumCur: 80,
-      textLumEnd: 80,
+      textLumBeg: 75,
+      textLumCur: 75,
+      textLumEnd: 75,
       textBevelBeg: 15,
       textBevelCur: 15,
       textBevelEnd: 15,
@@ -36,9 +36,9 @@ class VRScene extends React.Component {
       textAlignYBeg: 1,
       textAlignYCur: 1,
       textAlignYEnd: 1,
-      textAlignZBeg: 3,
-      textAlignZCur: 3,
-      textAlignZEnd: 2
+      textAlignZBeg: 6,
+      textAlignZCur: 6,
+      textAlignZEnd: 12
     };
     this.updateAllValues = this.updateAllValues.bind(this);
     this.updateVueIsIn = this.updateVueIsIn.bind(this);
@@ -55,37 +55,42 @@ class VRScene extends React.Component {
     }
     this.setState({
       textHueCur:
-        this.state.textHueBeg +
+        Number(this.state.textHueBeg) +
         ((this.state.textHueBeg - this.state.textHueEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
       textSatCur:
-        this.state.textSatBeg +
+        Number(this.state.textSatBeg) +
         ((this.state.textSatBeg - this.state.textSatEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
       textLumCur:
-        this.state.textLumBeg +
+        Number(this.state.textLumBeg) +
         ((this.state.textLumBeg - this.state.textLumEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
       textBevelCur:
-        this.state.textBevelBeg +
+        Number(this.state.textBevelBeg) +
         ((this.state.textBevelBeg - this.state.textBevelEnd) /
           this.state.numberOfFrames) *
+          this.state.frame,
+      textAlignXCur:
+        Number(this.state.textAlignXBeg) +
+        ((this.state.textAlignXBeg - this.state.textAlignXEnd) /
+          this.state.numberOfFrames) *
+          this.state.frame,
+      textAlignYCur:
+        Number(this.state.textAlignYBeg) +
+        ((this.state.textAlignYBeg - this.state.textAlignYEnd) /
+          this.state.numberOfFrames) *
+          this.state.frame,
+      textAlignZCur:
+        Number(this.state.textAlignZBeg) +
+        ((this.state.textAlignZBeg - this.state.textAlignZEnd) /
+          this.state.numberOfFrames) *
           this.state.frame
-      // textAlignXCur:
-      //   this.state.textAlignXBeg +
-      //   ((this.state.textAlignXBeg - this.state.textAlignXEnd) /
-      //     this.state.numberOfFrames) *
-      //     this.state.frame,
-      // textAlignYCur: this.state.textAlignYCur,
-      // textAlignZCur:
-      //   this.state.textAlignZCur +
-      //   ((this.state.textAlignZBeg - this.state.textAlignZEnd) /
-      //     this.state.numberOfFrames) *
-      //     this.state.frame
     });
+    console.log(this.state.textAlignZCur);
   }
   updateAllValues(evt) {
     if (this.state.isPlaying === true) {
@@ -284,7 +289,7 @@ class VRScene extends React.Component {
             <br />
             <input
               type="range"
-              min="-360"
+              min="0"
               max="360"
               value={this.state.textHueBeg}
               className="slider"
@@ -293,7 +298,7 @@ class VRScene extends React.Component {
             <br />
             <input
               type="range"
-              min="1"
+              min="0"
               max="360"
               value={this.state.textHueEnd}
               className="slider"
@@ -417,7 +422,7 @@ class VRScene extends React.Component {
                 this.state.textSatCur
               }%, ${
                 this.state.textLumCur
-              }%); metalness:0.2;roughness:0.05;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
+              }%); metalness:0.0;roughness:0.05;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
             />
           </Scene>
         </div>
