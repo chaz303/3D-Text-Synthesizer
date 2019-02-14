@@ -14,10 +14,6 @@ input {
   background-color: #eee;
 }
 
-checkbox {
-  float: left;
-}
-
 .panel {
   display: flex;
   flex-wrap: wrap;
@@ -34,7 +30,18 @@ checkbox {
   margin: 3px;
 }
 
+.readOut {
+  font-family: "LEDFont";
+  src: url("./fonts/digital_display.ttf") format("truetype");
+  color: #d10000;
+}
+
 .a-frame-scene-box {
   height: 500px;
   width: 100%;
+}
+
+@font-face {
+  font-family: "LEDFont";
+  src: url("/src/fonts/digital_display.ttf") format("truetype");
 }

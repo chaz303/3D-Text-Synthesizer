@@ -16,7 +16,7 @@ class VRScene extends React.Component {
       inputValue: "Zexty Ext",
       vueIsIn: true,
       isPlaying: true,
-      numberOfFrames: 60,
+      numberOfFrames: 90,
       frame: 0,
       textHueBeg: 50,
       textHueCur: 50,
@@ -24,21 +24,21 @@ class VRScene extends React.Component {
       textSatBeg: 80,
       textSatCur: 80,
       textSatEnd: 100,
-      textLumBeg: 65,
-      textLumCur: 65,
+      textLumBeg: 55,
+      textLumCur: 55,
       textLumEnd: 80,
-      textBevelBeg: 15,
-      textBevelCur: 15,
-      textBevelEnd: 15,
+      textHeightBeg: 0,
+      textHeightCur: 0,
+      textHeightEnd: 25,
       textAlignXBeg: -4,
       textAlignXCur: -4,
       textAlignXEnd: -4,
-      textAlignYBeg: 1,
-      textAlignYCur: 1,
-      textAlignYEnd: 1,
-      textAlignZBeg: 50,
-      textAlignZCur: 50,
-      textAlignZEnd: 0
+      textAlignYBeg: 6,
+      textAlignYCur: 6,
+      textAlignYEnd: -2,
+      textAlignZBeg: 25,
+      textAlignZCur: 25,
+      textAlignZEnd: -25
     };
     this.updateAllValues = this.updateAllValues.bind(this);
     this.updateVueIsIn = this.updateVueIsIn.bind(this);
@@ -69,9 +69,9 @@ class VRScene extends React.Component {
         ((this.state.textLumBeg - this.state.textLumEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
-      textBevelCur:
-        Number(this.state.textBevelBeg) -
-        ((this.state.textBevelBeg - this.state.textBevelEnd) /
+      textHeightCur:
+        Number(this.state.textHeightBeg) -
+        ((this.state.textHeightBeg - this.state.textHeightEnd) /
           this.state.numberOfFrames) *
           this.state.frame,
       textAlignXCur:
@@ -101,7 +101,7 @@ class VRScene extends React.Component {
           textHueCur: this.state.textHueBeg,
           textSatCur: this.state.textSatBeg,
           textLumCur: this.state.textLumBeg,
-          textBevelCur: this.state.textBevelBeg,
+          textHeightCur: this.state.textHeightBeg,
           textAlignXCur: this.state.textAlignXBeg,
           textAlignYCur: this.state.textAlignYBeg,
           textAlignZCur: this.state.textAlignZBeg
@@ -111,7 +111,7 @@ class VRScene extends React.Component {
           textHueCur: this.state.textHueEnd,
           textSatCur: this.state.textSatEnd,
           textLumCur: this.state.textLumEnd,
-          textBevelCur: this.state.textBevelEnd,
+          textHeightCur: this.state.textHeightEnd,
           textAlignXCur: this.state.textAlignXEnd,
           textAlignYCur: this.state.textAlignYEnd,
           textAlignZCur: this.state.textAlignZEnd
@@ -196,14 +196,14 @@ class VRScene extends React.Component {
       textAlignZEnd: evt.target.value * -1
     });
   }
-  updateTextBevelBeg(evt) {
+  updateTextHeightBeg(evt) {
     this.setState({
-      textBevelBeg: evt.target.value
+      textHeightBeg: evt.target.value
     });
   }
-  updateTextBevelEnd(evt) {
+  updateTextHeightEnd(evt) {
     this.setState({
-      textBevelEnd: evt.target.value
+      textHeightEnd: evt.target.value
     });
   }
   componentDidMount() {
@@ -225,6 +225,11 @@ class VRScene extends React.Component {
           <div className="panelElem">
             Horizontal:
             <br />
+            <span className="readOut">
+              {this.state.textAlignXBeg}:{Math.round(this.state.textAlignXCur)}:
+              {this.state.textAlignXEnd}
+            </span>
+            <br />
             <input
               type="range"
               min="-15"
@@ -244,7 +249,11 @@ class VRScene extends React.Component {
             />
           </div>
           <div className="panelElem">
-            Vertical:
+            Vertical: <br />
+            <span className="readOut">
+              {this.state.textAlignYBeg}:{Math.round(this.state.textAlignYCur)}:
+              {this.state.textAlignYEnd}
+            </span>
             <input
               type="range"
               min="-15"
@@ -265,6 +274,11 @@ class VRScene extends React.Component {
           </div>
           <div className="panelElem">
             Zoom:
+            <br />
+            <span className="readOut">
+              {this.state.textAlignZBeg}:{Math.round(this.state.textAlignZCur)}:
+              {this.state.textAlignZEnd}
+            </span>
             <br />
             <input
               type="range"
@@ -287,6 +301,11 @@ class VRScene extends React.Component {
           <div className="panelElem">
             Hue:
             <br />
+            <span className="readOut">
+              {this.state.textHueBeg}:{Math.round(this.state.textHueCur)}:
+              {this.state.textHueEnd}
+            </span>
+            <br />
             <input
               type="range"
               min="0"
@@ -307,6 +326,11 @@ class VRScene extends React.Component {
           </div>
           <div className="panelElem">
             Saturation:
+            <br />
+            <span className="readOut">
+              {this.state.textSatBeg}:{Math.round(this.state.textSatCur)}:
+              {this.state.textSatEnd}
+            </span>
             <br />
             <input
               type="range"
@@ -331,6 +355,11 @@ class VRScene extends React.Component {
           <div className="panelElem">
             Luminance:
             <br />
+            <span className="readOut">
+              {this.state.textLumBeg}:{Math.round(this.state.textLumCur)}:
+              {this.state.textLumEnd}
+            </span>
+            <br />
             <input
               type="range"
               min="1"
@@ -354,22 +383,27 @@ class VRScene extends React.Component {
           <div className="panelElem">
             Depth:
             <br />
+            <span className="readOut">
+              {this.state.textHeightBeg}:{Math.round(this.state.textHeightCur)}:
+              {this.state.textHeightEnd}
+            </span>
+            <br />
             <input
               type="range"
               min="0"
-              max="20"
-              value={this.state.textBevelBeg}
+              max="30"
+              value={this.state.textHeightBeg}
               className="slider"
-              onChange={evt => this.updateTextBevelBeg(evt)}
+              onChange={evt => this.updateTextHeightBeg(evt)}
             />
             <br />
             <input
               type="range"
               min="0"
-              max="20"
-              value={this.state.textBevelEnd}
+              max="30"
+              value={this.state.textHeightEnd}
               className="slider"
-              onChange={evt => this.updateTextBevelEnd(evt)}
+              onChange={evt => this.updateTextHeightEnd(evt)}
             />
           </div>
           <div className="panelElem">
@@ -412,12 +446,10 @@ class VRScene extends React.Component {
             <Entity
               position={`${this.state.textAlignXCur} ${
                 this.state.textAlignYCur
-              } ${this.state.textBevelCur * -1 - this.state.textAlignZCur}`}
-              text-geometry={`bevelEnabled:true;bevelSize:0.01;bevelThickness:${
-                this.state.textBevelCur
-              };curveSegments:6;height:0.5;size:1.5;font: #optimerBoldFont;value:${
-                this.state.inputValue
-              }`}
+              } ${this.state.textHeightCur * -1 - this.state.textAlignZCur}`}
+              text-geometry={`curveSegments:6;height:${
+                this.state.textHeightCur
+              };size:1.5;font: #optimerBoldFont;value:${this.state.inputValue}`}
               material={`color: hsla(${this.state.textHueCur}, ${
                 this.state.textSatCur
               }%, ${

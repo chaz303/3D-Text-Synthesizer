@@ -1,3 +1,5 @@
+This was made at my time at Code Chrysalis.
+
 ## About Zexty Ext
 
 Zexty Ext is a program to make your text _zesty_ and _sexy_. It is inspired by the television graphics of the late-seventies through mid-eighties made with low powered computers and analog video synthesizers such as the Scanimate.
@@ -9,5 +11,3 @@ The idea behind this app is to make animating text as easy and fun as possible. 
 The "In/Out" toggle toggles between the start and end positions for all of the settings. This toggle only works when play back is stopped.
 
 Zexty Ext c. 2019
-
-This was made at my time at Code Chrysalis.
