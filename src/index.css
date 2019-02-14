@@ -32,7 +32,7 @@ body {
     monospace;
   font-size: 14px;
   border: none;
-  background-color: #222;
+  background-color: #181818;
 }
 
 .readOut {
@@ -40,14 +40,14 @@ body {
 }
 
 .readOut input {
-  width: 32px;
+  width: 40px;
   text-align: right;
   color: #e00000;
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
   font-size: 14px;
   border: none;
-  background-color: #222;
+  background-color: #181818;
   margin: 1px;
 }
 
