@@ -9,11 +9,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-input {
-  width: 140px;
-  background-color: #eee;
-}
-
 .panel {
   display: flex;
   flex-wrap: wrap;
@@ -30,18 +25,33 @@ input {
   margin: 3px;
 }
 
+.panelElem input {
+  width: 140px;
+  background-color: #eee;
+}
+
 .readOut {
-  font-family: "LEDFont";
-  src: url("./fonts/digital_display.ttf") format("truetype");
-  color: #d10000;
+  font-size: 12px;
+  align-self: center;
+}
+
+.readOut input {
+  width: 32px;
+  text-align: right;
+  color: #d60000;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  font-size: 12px;
+  border: none;
+  background-color: #222;
+}
+
+.readOut input:focus {
+  outline: none;
+  background-color: #eee;
 }
 
 .a-frame-scene-box {
   height: 500px;
   width: 100%;
-}
-
-@font-face {
-  font-family: "LEDFont";
-  src: url("/src/fonts/digital_display.ttf") format("truetype");
 }

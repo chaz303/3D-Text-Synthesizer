@@ -226,8 +226,24 @@ class VRScene extends React.Component {
             Horizontal:
             <br />
             <span className="readOut">
-              {this.state.textAlignXBeg}:{Math.round(this.state.textAlignXCur)}:
-              {this.state.textAlignXEnd}
+              <input
+                type="text"
+                value={this.state.textAlignXBeg}
+                onChange={evt => this.updateTextAlignXBeg(evt)}
+              />
+              :
+              <input
+                type="text"
+                readonly="readonly"
+                user-select="none"
+                value={Math.round(this.state.textAlignXCur)}
+              />
+              :
+              <input
+                type="text"
+                value={this.state.textAlignXEnd}
+                onChange={evt => this.updateTextAlignXEnd(evt)}
+              />
             </span>
             <br />
             <input
@@ -251,8 +267,24 @@ class VRScene extends React.Component {
           <div className="panelElem">
             Vertical: <br />
             <span className="readOut">
-              {this.state.textAlignYBeg}:{Math.round(this.state.textAlignYCur)}:
-              {this.state.textAlignYEnd}
+              <input
+                type="text"
+                value={this.state.textAlignYBeg}
+                onChange={evt => this.updateTextAlignYBeg(evt)}
+              />
+              :
+              <input
+                type="text"
+                readonly="readonly"
+                user-select="none"
+                value={Math.round(this.state.textAlignYCur)}
+              />
+              :
+              <input
+                type="text"
+                value={this.state.textAlignYEnd}
+                onChange={evt => this.updateTextAlignYEnd(evt)}
+              />
             </span>
             <input
               type="range"
@@ -276,8 +308,24 @@ class VRScene extends React.Component {
             Zoom:
             <br />
             <span className="readOut">
-              {this.state.textAlignZBeg}:{Math.round(this.state.textAlignZCur)}:
-              {this.state.textAlignZEnd}
+              <input
+                type="text"
+                value={this.state.textAlignZBeg}
+                onChange={evt => this.updateTextAlignZBeg(evt)}
+              />
+              :
+              <input
+                type="text"
+                readonly="readonly"
+                user-select="none"
+                value={Math.round(this.state.textAlignZCur)}
+              />
+              :
+              <input
+                type="text"
+                value={this.state.textAlignZEnd}
+                onChange={evt => this.updateTextAlignZEnd(evt)}
+              />
             </span>
             <br />
             <input
@@ -302,8 +350,24 @@ class VRScene extends React.Component {
             Hue:
             <br />
             <span className="readOut">
-              {this.state.textHueBeg}:{Math.round(this.state.textHueCur)}:
-              {this.state.textHueEnd}
+              <input
+                type="text"
+                value={this.state.textHueBeg}
+                onChange={evt => this.updateTextHueBeg(evt)}
+              />
+              :
+              <input
+                type="text"
+                readonly="readonly"
+                user-select="none"
+                value={Math.round(this.state.textHueCur)}
+              />
+              :
+              <input
+                type="text"
+                value={this.state.textHueEnd}
+                onChange={evt => this.updateTextHueEnd(evt)}
+              />
             </span>
             <br />
             <input
@@ -328,8 +392,24 @@ class VRScene extends React.Component {
             Saturation:
             <br />
             <span className="readOut">
-              {this.state.textSatBeg}:{Math.round(this.state.textSatCur)}:
-              {this.state.textSatEnd}
+              <input
+                type="text"
+                value={this.state.textSatBeg}
+                onChange={evt => this.updateTextSatBeg(evt)}
+              />
+              :
+              <input
+                type="text"
+                readonly="readonly"
+                user-select="none"
+                value={Math.round(this.state.textSatCur)}
+              />
+              :
+              <input
+                type="text"
+                value={this.state.textSatEnd}
+                onChange={evt => this.updateTextSatEnd(evt)}
+              />
             </span>
             <br />
             <input
@@ -356,8 +436,24 @@ class VRScene extends React.Component {
             Luminance:
             <br />
             <span className="readOut">
-              {this.state.textLumBeg}:{Math.round(this.state.textLumCur)}:
-              {this.state.textLumEnd}
+              <input
+                type="text"
+                value={this.state.textLumBeg}
+                onChange={evt => this.updateTextLumBeg(evt)}
+              />
+              :
+              <input
+                type="text"
+                readonly="readonly"
+                user-select="none"
+                value={Math.round(this.state.textLumCur)}
+              />
+              :
+              <input
+                type="text"
+                value={this.state.textLumEnd}
+                onChange={evt => this.updateTextLumEnd(evt)}
+              />
             </span>
             <br />
             <input
@@ -384,8 +480,24 @@ class VRScene extends React.Component {
             Depth:
             <br />
             <span className="readOut">
-              {this.state.textHeightBeg}:{Math.round(this.state.textHeightCur)}:
-              {this.state.textHeightEnd}
+              <input
+                type="text"
+                value={this.state.textHeightBeg}
+                onChange={evt => this.updateTextHeightBeg(evt)}
+              />
+              :
+              <input
+                type="text"
+                readonly="readonly"
+                user-select="none"
+                value={Math.round(this.state.textHeightCur)}
+              />
+              :
+              <input
+                type="text"
+                value={this.state.textHeightEnd}
+                onChange={evt => this.updateTextHeightEnd(evt)}
+              />
             </span>
             <br />
             <input
