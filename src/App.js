@@ -13,7 +13,7 @@ class VRScene extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: "Zexty Ext",
+      inputValue: "Chaz Wilson",
       vueIsIn: true,
       isPlaying: true,
       numberOfFrames: 90,
@@ -30,15 +30,15 @@ class VRScene extends React.Component {
       textHeightBeg: 0,
       textHeightCur: 0,
       textHeightEnd: 25,
-      textAlignXBeg: -4,
-      textAlignXCur: -4,
-      textAlignXEnd: -4,
+      textAlignXBeg: -6,
+      textAlignXCur: -6,
+      textAlignXEnd: -6,
       textAlignYBeg: 6,
       textAlignYCur: 6,
       textAlignYEnd: -2,
       textAlignZBeg: 25,
       textAlignZCur: 25,
-      textAlignZEnd: -25
+      textAlignZEnd: -23
     };
     this.updateAllValues = this.updateAllValues.bind(this);
     this.updateVueIsIn = this.updateVueIsIn.bind(this);
@@ -546,7 +546,7 @@ class VRScene extends React.Component {
             embedded
             background="color: black"
             effects="bloom, fxaa"
-            bloom="radius: 0.4"
+            bloom="radius: 0.3"
             fxaa
           >
             <a-assets>
@@ -559,14 +559,14 @@ class VRScene extends React.Component {
               position={`${this.state.textAlignXCur} ${
                 this.state.textAlignYCur
               } ${this.state.textHeightCur * -1 - this.state.textAlignZCur}`}
-              text-geometry={`curveSegments:6;height:${
+              text-geometry={`curveSegments:3;height:${
                 this.state.textHeightCur
               };size:1.5;font: #optimerBoldFont;value:${this.state.inputValue}`}
               material={`color: hsla(${this.state.textHueCur}, ${
                 this.state.textSatCur
               }%, ${
                 this.state.textLumCur
-              }%); metalness:0.0;roughness:0.05;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
+              }%); metalness:0.0;roughness:0.25;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
             />
           </Scene>
         </div>

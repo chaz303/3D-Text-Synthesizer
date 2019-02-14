@@ -27,23 +27,28 @@ body {
 
 .panelElem input {
   width: 140px;
-  background-color: #eee;
+  color: #e00000;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  font-size: 14px;
+  border: none;
+  background-color: #222;
 }
 
 .readOut {
-  font-size: 12px;
-  align-self: center;
+  font-size: 14px;
 }
 
 .readOut input {
   width: 32px;
   text-align: right;
-  color: #d60000;
+  color: #e00000;
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-  font-size: 12px;
+  font-size: 14px;
   border: none;
   background-color: #222;
+  margin: 1px;
 }
 
 .readOut input:focus {
