@@ -248,8 +248,8 @@ class VRScene extends React.Component {
             <br />
             <input
               type="range"
-              min="-15"
-              max="15"
+              min="-30"
+              max="30"
               value={this.state.textAlignXBeg}
               className="slider"
               onChange={evt => this.updateTextAlignXBeg(evt)}
@@ -257,8 +257,8 @@ class VRScene extends React.Component {
             <br />
             <input
               type="range"
-              min="-15"
-              max="15"
+              min="-30"
+              max="30"
               value={this.state.textAlignXEnd}
               className="slider"
               onChange={evt => this.updateTextAlignXEnd(evt)}
@@ -288,8 +288,8 @@ class VRScene extends React.Component {
             </span>
             <input
               type="range"
-              min="-15"
-              max="15"
+              min="-30"
+              max="30"
               value={this.state.textAlignYBeg}
               className="slider"
               onChange={evt => this.updateTextAlignYBeg(evt)}
@@ -297,8 +297,8 @@ class VRScene extends React.Component {
             <br />
             <input
               type="range"
-              min="-15"
-              max="15"
+              min="-30"
+              max="30"
               value={this.state.textAlignYEnd}
               className="slider"
               onChange={evt => this.updateTextAlignYEnd(evt)}
@@ -526,8 +526,8 @@ class VRScene extends React.Component {
               onChange={evt => this.updateVueIsIn(evt)}
               checked={this.state.vueIsIn ? "checked" : null}
             />
-          </div>
-          <div className="panelElem">
+            <br />
+            <br />
             Play/Stop:
             <br />
             <input
@@ -536,17 +536,13 @@ class VRScene extends React.Component {
               checked={this.state.isPlaying ? "checked" : null}
             />
           </div>
-          <div className="panelElem">
-            by:
-            <br /> Chaz Wilson
-          </div>
         </div>
         <div className="a-frame-scene-box">
           <Scene
             embedded
             background="color: black"
             effects="bloom, fxaa"
-            bloom="radius: 0.3"
+            bloom="radius: 0.1"
             fxaa
           >
             <a-assets>
@@ -569,6 +565,9 @@ class VRScene extends React.Component {
               }%); metalness:0.0;roughness:0.25;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
             />
           </Scene>
+        </div>
+        <div align="right" margin="2">
+          by Chaz Wilson
         </div>
       </div>
     );
