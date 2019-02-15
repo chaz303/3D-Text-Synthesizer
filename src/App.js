@@ -26,23 +26,19 @@ class VRScene extends React.Component {
       textGEnd: 171,
       textBEnd: 255,
       textHeightBeg: 0,
-      textHeightCur: 0,
       textHeightEnd: 17,
       textAlignXBeg: -6,
-      textAlignXCur: -6,
       textAlignXEnd: -6,
       textAlignYBeg: 6,
-      textAlignYCur: 6,
       textAlignYEnd: -2,
       textAlignZBeg: 25,
-      textAlignZCur: 25,
       textAlignZEnd: -23
     };
     this.updateAllValues = this.updateAllValues.bind(this);
     this.updateVueIsIn = this.updateVueIsIn.bind(this);
   }
   playFun() {
-    if (this.state.frameCur < this.state.frameLength + +this.state.frameEnd) {
+    if (this.state.frameCur < this.state.frameLength + this.state.frameEnd) {
       this.setState({
         frameCur: this.state.frameCur + 1
       });
@@ -127,12 +123,12 @@ class VRScene extends React.Component {
   }
   updateFrameEnd(evt) {
     this.setState({
-      frameEnd: evt.target.value
+      frameEnd: Number(evt.target.value)
     });
   }
   updateFrameLength(evt) {
     this.setState({
-      frameLength: evt.target.value
+      frameLength: Number(evt.target.value)
     });
   }
   updateIsPlaying(evt) {
@@ -148,32 +144,32 @@ class VRScene extends React.Component {
   }
   updateTextRBeg(evt) {
     this.setState({
-      textRBeg: evt.target.value
+      textRBeg: Number(evt.target.value)
     });
   }
   updateTextREnd(evt) {
     this.setState({
-      textREnd: evt.target.value
+      textREnd: Number(evt.target.value)
     });
   }
   updateTextGBeg(evt) {
     this.setState({
-      textGBeg: evt.target.value
+      textGBeg: Number(evt.target.value)
     });
   }
   updateTextGEnd(evt) {
     this.setState({
-      textGEnd: evt.target.value
+      textGEnd: Number(evt.target.value)
     });
   }
   updateTextBBeg(evt) {
     this.setState({
-      textBBeg: evt.target.value
+      textBBeg: Number(evt.target.value)
     });
   }
   updateTextBEnd(evt) {
     this.setState({
-      textBEnd: evt.target.value
+      textBEnd: Number(evt.target.value)
     });
   }
   updateTextAlignXBeg(evt) {
@@ -208,12 +204,12 @@ class VRScene extends React.Component {
   }
   updateTextHeightBeg(evt) {
     this.setState({
-      textHeightBeg: evt.target.value
+      textHeightBeg: Number(evt.target.value)
     });
   }
   updateTextHeightEnd(evt) {
     this.setState({
-      textHeightEnd: evt.target.value
+      textHeightEnd: Number(evt.target.value)
     });
   }
   componentDidMount() {
@@ -223,363 +219,393 @@ class VRScene extends React.Component {
     return (
       <div>
         <div className="panel">
-          <div className="panelElem">
-            Text:
-            <br />
-            <input
-              type="text"
-              value={this.state.inputValue}
-              onChange={evt => this.updateInputValue(evt)}
-            />
-          </div>
-          <div className="panelElem">
-            Horizontal:
-            <br />
-            <span className="readOut">
+          <div className="subPanel">
+            <div className="panelElem">
+              Text:
+              <br />
               <input
                 type="text"
-                value={this.state.textAlignXBeg}
-                onChange={evt => this.updateTextAlignXBeg(evt)}
+                value={this.state.inputValue}
+                onChange={evt => this.updateInputValue(evt)}
               />
-              :
+            </div>
+            <div className="panelElem">
+              Font:
+              <br />
+            </div>
+            <div className="panelElem">
+              Depth:
+              <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.textHeightBeg}
+                  onChange={evt => this.updateTextHeightBeg(evt)}
+                />
+                :
+                <input
+                  type="text"
+                  readonly="readonly"
+                  user-select="none"
+                  value={Math.round(this.state.textHeightCur)}
+                />
+                :
+                <input
+                  type="text"
+                  value={this.state.textHeightEnd}
+                  onChange={evt => this.updateTextHeightEnd(evt)}
+                />
+              </span>
+              <br />
               <input
-                type="text"
-                readonly="readonly"
-                user-select="none"
-                value={Math.round(this.state.textAlignXCur)}
-              />
-              :
-              <input
-                type="text"
-                value={this.state.textAlignXEnd}
-                onChange={evt => this.updateTextAlignXEnd(evt)}
-              />
-            </span>
-            <br />
-            <input
-              type="range"
-              min="-30"
-              max="30"
-              value={this.state.textAlignXBeg}
-              className="slider"
-              onChange={evt => this.updateTextAlignXBeg(evt)}
-            />
-            <br />
-            <input
-              type="range"
-              min="-30"
-              max="30"
-              value={this.state.textAlignXEnd}
-              className="slider"
-              onChange={evt => this.updateTextAlignXEnd(evt)}
-            />
-          </div>
-          <div className="panelElem">
-            Vertical: <br />
-            <span className="readOut">
-              <input
-                type="text"
-                value={this.state.textAlignYBeg}
-                onChange={evt => this.updateTextAlignYBeg(evt)}
-              />
-              :
-              <input
-                type="text"
-                readonly="readonly"
-                user-select="none"
-                value={Math.round(this.state.textAlignYCur)}
-              />
-              :
-              <input
-                type="text"
-                value={this.state.textAlignYEnd}
-                onChange={evt => this.updateTextAlignYEnd(evt)}
-              />
-            </span>
-            <input
-              type="range"
-              min="-30"
-              max="30"
-              value={this.state.textAlignYBeg}
-              className="slider"
-              onChange={evt => this.updateTextAlignYBeg(evt)}
-            />
-            <br />
-            <input
-              type="range"
-              min="-30"
-              max="30"
-              value={this.state.textAlignYEnd}
-              className="slider"
-              onChange={evt => this.updateTextAlignYEnd(evt)}
-            />
-          </div>
-          <div className="panelElem">
-            Zoom:
-            <br />
-            <span className="readOut">
-              <input
-                type="text"
-                value={this.state.textAlignZBeg}
-                onChange={evt => this.updateTextAlignZBeg(evt)}
-              />
-              :
-              <input
-                type="text"
-                readonly="readonly"
-                user-select="none"
-                value={Math.round(this.state.textAlignZCur)}
-              />
-              :
-              <input
-                type="text"
-                value={this.state.textAlignZEnd}
-                onChange={evt => this.updateTextAlignZEnd(evt)}
-              />
-            </span>
-            <br />
-            <input
-              type="range"
-              min="-110"
-              max="50"
-              value={this.state.textAlignZBeg * -1}
-              className="slider"
-              onChange={evt => this.updateTextAlignZBeg(evt)}
-            />
-            <br />
-            <input
-              type="range"
-              min="-110"
-              max="50"
-              value={this.state.textAlignZEnd * -1}
-              className="slider"
-              onChange={evt => this.updateTextAlignZEnd(evt)}
-            />
-          </div>
-          <div className="panelElem">
-            Red:
-            <br />
-            <span className="readOut">
-              <input
-                type="text"
-                value={this.state.textRBeg}
-                onChange={evt => this.updateTextRBeg(evt)}
-              />
-              :
-              <input
-                type="text"
-                readonly="readonly"
-                user-select="none"
-                value={Math.round(this.state.textRCur)}
-              />
-              :
-              <input
-                type="text"
-                value={this.state.textREnd}
-                onChange={evt => this.updateTextREnd(evt)}
-              />
-            </span>
-            <br />
-            <input
-              type="range"
-              min="0"
-              max="255"
-              value={this.state.textRBeg}
-              className="slider"
-              onChange={evt => this.updateTextRBeg(evt)}
-            />
-            <br />
-            <input
-              type="range"
-              min="0"
-              max="255"
-              value={this.state.textREnd}
-              className="slider"
-              onChange={evt => this.updateTextREnd(evt)}
-            />
-          </div>
-          <div className="panelElem">
-            Green:
-            <br />
-            <span className="readOut">
-              <input
-                type="text"
-                value={this.state.textGBeg}
-                onChange={evt => this.updateTextGBeg(evt)}
-              />
-              :
-              <input
-                type="text"
-                readonly="readonly"
-                user-select="none"
-                value={Math.round(this.state.textGCur)}
-              />
-              :
-              <input
-                type="text"
-                value={this.state.textGEnd}
-                onChange={evt => this.updateTextGEnd(evt)}
-              />
-            </span>
-            <br />
-            <input
-              type="range"
-              min="0"
-              max="255"
-              value={this.state.textGBeg}
-              className="slider"
-              id="bgSat"
-              onChange={evt => this.updateTextGBeg(evt)}
-            />
-            <br />
-            <input
-              type="range"
-              min="0"
-              max="255"
-              value={this.state.textGEnd}
-              className="slider"
-              id="bgSat"
-              onChange={evt => this.updateTextGEnd(evt)}
-            />
-          </div>
-          <div className="panelElem">
-            Blue:
-            <br />
-            <span className="readOut">
-              <input
-                type="text"
-                value={this.state.textBBeg}
-                onChange={evt => this.updateTextBBeg(evt)}
-              />
-              :
-              <input
-                type="text"
-                readonly="readonly"
-                user-select="none"
-                value={Math.round(this.state.textBCur)}
-              />
-              :
-              <input
-                type="text"
-                value={this.state.textBEnd}
-                onChange={evt => this.updateTextBEnd(evt)}
-              />
-            </span>
-            <br />
-            <input
-              type="range"
-              min="0"
-              max="255"
-              value={this.state.textBBeg}
-              className="slider"
-              id="bgLum"
-              onChange={evt => this.updateTextBBeg(evt)}
-            />
-            <br />
-            <input
-              type="range"
-              min="0"
-              max="255"
-              value={this.state.textBEnd}
-              className="slider"
-              id="bgLum"
-              onChange={evt => this.updateTextBEnd(evt)}
-            />
-          </div>
-          <div className="panelElem">
-            Depth:
-            <br />
-            <span className="readOut">
-              <input
-                type="text"
+                type="range"
+                min="0"
+                max="30"
                 value={this.state.textHeightBeg}
+                className="slider"
                 onChange={evt => this.updateTextHeightBeg(evt)}
               />
-              :
+              <br />
               <input
-                type="text"
-                readonly="readonly"
-                user-select="none"
-                value={Math.round(this.state.textHeightCur)}
-              />
-              :
-              <input
-                type="text"
+                type="range"
+                min="0"
+                max="30"
                 value={this.state.textHeightEnd}
+                className="slider"
                 onChange={evt => this.updateTextHeightEnd(evt)}
               />
-            </span>
-            <br />
-            <input
-              type="range"
-              min="0"
-              max="30"
-              value={this.state.textHeightBeg}
-              className="slider"
-              onChange={evt => this.updateTextHeightBeg(evt)}
-            />
-            <br />
-            <input
-              type="range"
-              min="0"
-              max="30"
-              value={this.state.textHeightEnd}
-              className="slider"
-              onChange={evt => this.updateTextHeightEnd(evt)}
-            />
+            </div>
           </div>
-          <div className="panelElem">
-            Playback Range:
-            <br />
-            <span className="readOut">
-              <input type="text" value={this.state.frameBeg} />
+          <div className="subPanel">
+            <div className="panelElem">
+              Horizontal:
+              <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.textAlignXBeg}
+                  onChange={evt => this.updateTextAlignXBeg(evt)}
+                />
+                :
+                <input
+                  type="text"
+                  readonly="readonly"
+                  user-select="none"
+                  value={Math.round(this.state.textAlignXCur)}
+                />
+                :
+                <input
+                  type="text"
+                  value={this.state.textAlignXEnd}
+                  onChange={evt => this.updateTextAlignXEnd(evt)}
+                />
+              </span>
+              <br />
               <input
-                type="text"
-                value={this.state.frameCur}
-                onChange={evt => this.frameCur(evt)}
+                type="range"
+                min="-30"
+                max="30"
+                value={this.state.textAlignXBeg}
+                className="slider"
+                onChange={evt => this.updateTextAlignXBeg(evt)}
               />
+              <br />
               <input
-                type="text"
+                type="range"
+                min="-30"
+                max="30"
+                value={this.state.textAlignXEnd}
+                className="slider"
+                onChange={evt => this.updateTextAlignXEnd(evt)}
+              />
+            </div>
+            <div className="panelElem">
+              Vertical: <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.textAlignYBeg}
+                  onChange={evt => this.updateTextAlignYBeg(evt)}
+                />
+                :
+                <input
+                  type="text"
+                  readonly="readonly"
+                  user-select="none"
+                  value={Math.round(this.state.textAlignYCur)}
+                />
+                :
+                <input
+                  type="text"
+                  value={this.state.textAlignYEnd}
+                  onChange={evt => this.updateTextAlignYEnd(evt)}
+                />
+              </span>
+              <input
+                type="range"
+                min="-30"
+                max="30"
+                value={this.state.textAlignYBeg}
+                className="slider"
+                onChange={evt => this.updateTextAlignYBeg(evt)}
+              />
+              <br />
+              <input
+                type="range"
+                min="-30"
+                max="30"
+                value={this.state.textAlignYEnd}
+                className="slider"
+                onChange={evt => this.updateTextAlignYEnd(evt)}
+              />
+            </div>
+            <div className="panelElem">
+              Zoom:
+              <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.textAlignZBeg}
+                  onChange={evt => this.updateTextAlignZBeg(evt)}
+                />
+                :
+                <input
+                  type="text"
+                  readonly="readonly"
+                  user-select="none"
+                  value={Math.round(this.state.textAlignZCur)}
+                />
+                :
+                <input
+                  type="text"
+                  value={this.state.textAlignZEnd}
+                  onChange={evt => this.updateTextAlignZEnd(evt)}
+                />
+              </span>
+              <br />
+              <input
+                type="range"
+                min="-110"
+                max="50"
+                value={this.state.textAlignZBeg * -1}
+                className="slider"
+                onChange={evt => this.updateTextAlignZBeg(evt)}
+              />
+              <br />
+              <input
+                type="range"
+                min="-110"
+                max="50"
+                value={this.state.textAlignZEnd * -1}
+                className="slider"
+                onChange={evt => this.updateTextAlignZEnd(evt)}
+              />
+            </div>
+          </div>
+          <div className="subPanel">
+            <div className="panelElem">
+              Red:
+              <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.textRBeg}
+                  onChange={evt => this.updateTextRBeg(evt)}
+                />
+                :
+                <input
+                  type="text"
+                  readonly="readonly"
+                  user-select="none"
+                  value={Math.round(this.state.textRCur)}
+                />
+                :
+                <input
+                  type="text"
+                  value={this.state.textREnd}
+                  onChange={evt => this.updateTextREnd(evt)}
+                />
+              </span>
+              <br />
+              <input
+                type="range"
+                min="0"
+                max="255"
+                value={this.state.textRBeg}
+                className="slider"
+                onChange={evt => this.updateTextRBeg(evt)}
+              />
+              <br />
+              <input
+                type="range"
+                min="0"
+                max="255"
+                value={this.state.textREnd}
+                className="slider"
+                onChange={evt => this.updateTextREnd(evt)}
+              />
+            </div>
+            <div className="panelElem">
+              Green:
+              <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.textGBeg}
+                  onChange={evt => this.updateTextGBeg(evt)}
+                />
+                :
+                <input
+                  type="text"
+                  readonly="readonly"
+                  user-select="none"
+                  value={Math.round(this.state.textGCur)}
+                />
+                :
+                <input
+                  type="text"
+                  value={this.state.textGEnd}
+                  onChange={evt => this.updateTextGEnd(evt)}
+                />
+              </span>
+              <br />
+              <input
+                type="range"
+                min="0"
+                max="255"
+                value={this.state.textGBeg}
+                className="slider"
+                id="bgSat"
+                onChange={evt => this.updateTextGBeg(evt)}
+              />
+              <br />
+              <input
+                type="range"
+                min="0"
+                max="255"
+                value={this.state.textGEnd}
+                className="slider"
+                id="bgSat"
+                onChange={evt => this.updateTextGEnd(evt)}
+              />
+            </div>
+            <div className="panelElem">
+              Blue:
+              <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.textBBeg}
+                  onChange={evt => this.updateTextBBeg(evt)}
+                />
+                :
+                <input
+                  type="text"
+                  readonly="readonly"
+                  user-select="none"
+                  value={Math.round(this.state.textBCur)}
+                />
+                :
+                <input
+                  type="text"
+                  value={this.state.textBEnd}
+                  onChange={evt => this.updateTextBEnd(evt)}
+                />
+              </span>
+              <br />
+              <input
+                type="range"
+                min="0"
+                max="255"
+                value={this.state.textBBeg}
+                className="slider"
+                id="bgLum"
+                onChange={evt => this.updateTextBBeg(evt)}
+              />
+              <br />
+              <input
+                type="range"
+                min="0"
+                max="255"
+                value={this.state.textBEnd}
+                className="slider"
+                id="bgLum"
+                onChange={evt => this.updateTextBEnd(evt)}
+              />
+            </div>
+          </div>
+          <div className="subPanel">
+            <div className="panelElem">
+              Playback Range:
+              <br />
+              <span className="readOut">
+                <input type="text" value={this.state.frameBeg} />
+                :
+                <input type="text" value={this.state.frameCur} />
+                :
+                <input
+                  type="text"
+                  value={this.state.frameEnd}
+                  onChange={evt => this.updateFrameEnd(evt)}
+                />
+              </span>
+              <br />
+              <input
+                type="range"
+                min="0"
+                max={this.state.frameLength}
+                value={this.state.frameBeg}
+                className="slider"
+                onChange={evt => this.updateFrameBeg(evt)}
+              />
+              <br />
+              <input
+                type="range"
+                min={-1 * this.state.frameLength}
+                max="0"
                 value={this.state.frameEnd}
+                className="slider"
                 onChange={evt => this.updateFrameEnd(evt)}
               />
-            </span>
-            <br />
-            <input
-              type="range"
-              min="0"
-              max="300"
-              value={this.state.frameBeg}
-              className="slider"
-              onChange={evt => this.updateFrameBeg(evt)}
-            />
-            <br />
-            <input
-              type="range"
-              min={-1 * this.state.frameLength}
-              max="0"
-              value={this.state.frameEnd}
-              className="slider"
-              onChange={evt => this.updateFrameEnd(evt)}
-            />
-          </div>
-          <div className="panelElem">
-            In/Out:
-            <br />
-            <input
-              type="checkbox"
-              onChange={evt => this.updateVueIsIn(evt)}
-              checked={this.state.vueIsIn ? "checked" : null}
-            />
-            <br />
-            <br />
-            Play/Stop:
-            <br />
-            <input
-              type="checkbox"
-              onChange={evt => this.updateIsPlaying(evt)}
-              checked={this.state.isPlaying ? "checked" : null}
-            />
+            </div>
+            <div className="panelElem">
+              Playback Length:
+              <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.frameLength}
+                  onChange={evt => this.updateFrameLength(evt)}
+                />
+              </span>
+              <br />
+              <input
+                type="range"
+                min="0"
+                max="300"
+                value={this.state.frameLength}
+                className="slider"
+                onChange={evt => this.updateFrameLength(evt)}
+              />
+            </div>
+            <div className="panelElem">
+              In/Out:
+              <br />
+              <input
+                type="checkbox"
+                onChange={evt => this.updateVueIsIn(evt)}
+                checked={this.state.vueIsIn ? "checked" : null}
+              />
+              <br />
+              <br />
+              Play/Stop:
+              <br />
+              <input
+                type="checkbox"
+                onChange={evt => this.updateIsPlaying(evt)}
+                checked={this.state.isPlaying ? "checked" : null}
+              />
+            </div>
           </div>
         </div>
         <div className="a-frame-scene-box">
@@ -621,9 +647,3 @@ class VRScene extends React.Component {
 
 //ReactDOM.render(<VRScene/>, document.querySelector('#sceneContainer'));
 export default VRScene;
-
-// ${Math.round(this.state.textRCur)}, ${
-//   Math.round(this.state.textGCur)
-// }, ${
-//   Math.round(this.state.textBCur)
-// }
