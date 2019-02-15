@@ -16,20 +16,18 @@ class VRScene extends React.Component {
       inputValue: "Chaz Wilson",
       vueIsIn: true,
       isPlaying: true,
-      numberOfFrames: 90,
-      frame: 0,
-      textHueBeg: 50,
-      textHueCur: 50,
-      textHueEnd: 250,
-      textSatBeg: 80,
-      textSatCur: 80,
-      textSatEnd: 100,
-      textLumBeg: 55,
-      textLumCur: 55,
-      textLumEnd: 80,
+      frameBeg: 0,
+      frameEnd: 0,
+      frameLength: 90,
+      textRBeg: 84,
+      textGBeg: 255,
+      textBBeg: 255,
+      textREnd: 244,
+      textGEnd: 171,
+      textBEnd: 255,
       textHeightBeg: 0,
       textHeightCur: 0,
-      textHeightEnd: 25,
+      textHeightEnd: 17,
       textAlignXBeg: -6,
       textAlignXCur: -6,
       textAlignXEnd: -6,
@@ -44,63 +42,61 @@ class VRScene extends React.Component {
     this.updateVueIsIn = this.updateVueIsIn.bind(this);
   }
   playFun() {
-    if (this.state.frame < this.state.numberOfFrames) {
+    if (this.state.frameCur < this.state.frameLength + +this.state.frameEnd) {
       this.setState({
-        frame: this.state.frame + 1
+        frameCur: this.state.frameCur + 1
       });
     } else {
       this.setState({
-        frame: 0
+        frameCur: this.state.frameBeg
       });
     }
     this.setState({
-      textHueCur:
-        Number(this.state.textHueBeg) -
-        ((this.state.textHueBeg - this.state.textHueEnd) /
-          this.state.numberOfFrames) *
-          this.state.frame,
-      textSatCur:
-        Number(this.state.textSatBeg) -
-        ((this.state.textSatBeg - this.state.textSatEnd) /
-          this.state.numberOfFrames) *
-          this.state.frame,
-      textLumCur:
-        Number(this.state.textLumBeg) -
-        ((this.state.textLumBeg - this.state.textLumEnd) /
-          this.state.numberOfFrames) *
-          this.state.frame,
+      textRCur:
+        Number(this.state.textRBeg) -
+        ((this.state.textRBeg - this.state.textREnd) / this.state.frameLength) *
+          this.state.frameCur,
+      textGCur:
+        Number(this.state.textGBeg) -
+        ((this.state.textGBeg - this.state.textGEnd) / this.state.frameLength) *
+          this.state.frameCur,
+      textBCur:
+        Number(this.state.textBBeg) -
+        ((this.state.textBBeg - this.state.textBEnd) / this.state.frameLength) *
+          this.state.frameCur,
       textHeightCur:
         Number(this.state.textHeightBeg) -
         ((this.state.textHeightBeg - this.state.textHeightEnd) /
-          this.state.numberOfFrames) *
-          this.state.frame,
+          this.state.frameLength) *
+          this.state.frameCur,
       textAlignXCur:
         Number(this.state.textAlignXBeg) -
         ((this.state.textAlignXBeg - this.state.textAlignXEnd) /
-          this.state.numberOfFrames) *
-          this.state.frame,
+          this.state.frameLength) *
+          this.state.frameCur,
       textAlignYCur:
         Number(this.state.textAlignYBeg) -
         ((this.state.textAlignYBeg - this.state.textAlignYEnd) /
-          this.state.numberOfFrames) *
-          this.state.frame,
+          this.state.frameLength) *
+          this.state.frameCur,
       textAlignZCur:
         Number(this.state.textAlignZBeg) -
         ((this.state.textAlignZBeg - this.state.textAlignZEnd) /
-          this.state.numberOfFrames) *
-          this.state.frame
+          this.state.frameLength) *
+          this.state.frameCur
     });
     console.log(this.state.textAlignZCur);
   }
+
   updateAllValues(evt) {
     if (this.state.isPlaying === true) {
       this.playFun();
     } else {
       if (this.state.vueIsIn === true) {
         this.setState({
-          textHueCur: this.state.textHueBeg,
-          textSatCur: this.state.textSatBeg,
-          textLumCur: this.state.textLumBeg,
+          textRCur: this.state.textRBeg,
+          textGCur: this.state.textGBeg,
+          textBCur: this.state.textBBeg,
           textHeightCur: this.state.textHeightBeg,
           textAlignXCur: this.state.textAlignXBeg,
           textAlignYCur: this.state.textAlignYBeg,
@@ -108,9 +104,9 @@ class VRScene extends React.Component {
         });
       } else {
         this.setState({
-          textHueCur: this.state.textHueEnd,
-          textSatCur: this.state.textSatEnd,
-          textLumCur: this.state.textLumEnd,
+          textRCur: this.state.textREnd,
+          textGCur: this.state.textGEnd,
+          textBCur: this.state.textBEnd,
           textHeightCur: this.state.textHeightEnd,
           textAlignXCur: this.state.textAlignXEnd,
           textAlignYCur: this.state.textAlignYEnd,
@@ -123,12 +119,26 @@ class VRScene extends React.Component {
     this.setState({
       vueIsIn: !this.state.vueIsIn
     });
-    console.log(this.state.vueIsIn);
+  }
+  updateFrameBeg(evt) {
+    this.setState({
+      frameBeg: Number(evt.target.value)
+    });
+  }
+  updateFrameEnd(evt) {
+    this.setState({
+      frameEnd: evt.target.value
+    });
+  }
+  updateFrameLength(evt) {
+    this.setState({
+      frameLength: evt.target.value
+    });
   }
   updateIsPlaying(evt) {
     this.setState({
       isPlaying: !this.state.isPlaying,
-      frame: 1
+      frameCur: this.state.frameBeg
     });
   }
   updateInputValue(evt) {
@@ -136,34 +146,34 @@ class VRScene extends React.Component {
       inputValue: evt.target.value
     });
   }
-  updateTextHueBeg(evt) {
+  updateTextRBeg(evt) {
     this.setState({
-      textHueBeg: evt.target.value
+      textRBeg: evt.target.value
     });
   }
-  updateTextHueEnd(evt) {
+  updateTextREnd(evt) {
     this.setState({
-      textHueEnd: evt.target.value
+      textREnd: evt.target.value
     });
   }
-  updateTextSatBeg(evt) {
+  updateTextGBeg(evt) {
     this.setState({
-      textSatBeg: evt.target.value
+      textGBeg: evt.target.value
     });
   }
-  updateTextSatEnd(evt) {
+  updateTextGEnd(evt) {
     this.setState({
-      textSatEnd: evt.target.value
+      textGEnd: evt.target.value
     });
   }
-  updateTextLumBeg(evt) {
+  updateTextBBeg(evt) {
     this.setState({
-      textLumBeg: evt.target.value
+      textBBeg: evt.target.value
     });
   }
-  updateTextLumEnd(evt) {
+  updateTextBEnd(evt) {
     this.setState({
-      textLumEnd: evt.target.value
+      textBEnd: evt.target.value
     });
   }
   updateTextAlignXBeg(evt) {
@@ -347,133 +357,133 @@ class VRScene extends React.Component {
             />
           </div>
           <div className="panelElem">
-            Hue:
+            Red:
             <br />
             <span className="readOut">
               <input
                 type="text"
-                value={this.state.textHueBeg}
-                onChange={evt => this.updateTextHueBeg(evt)}
+                value={this.state.textRBeg}
+                onChange={evt => this.updateTextRBeg(evt)}
               />
               :
               <input
                 type="text"
                 readonly="readonly"
                 user-select="none"
-                value={Math.round(this.state.textHueCur)}
+                value={Math.round(this.state.textRCur)}
               />
               :
               <input
                 type="text"
-                value={this.state.textHueEnd}
-                onChange={evt => this.updateTextHueEnd(evt)}
+                value={this.state.textREnd}
+                onChange={evt => this.updateTextREnd(evt)}
               />
             </span>
             <br />
             <input
               type="range"
               min="0"
-              max="360"
-              value={this.state.textHueBeg}
+              max="255"
+              value={this.state.textRBeg}
               className="slider"
-              onChange={evt => this.updateTextHueBeg(evt)}
+              onChange={evt => this.updateTextRBeg(evt)}
             />
             <br />
             <input
               type="range"
               min="0"
-              max="360"
-              value={this.state.textHueEnd}
+              max="255"
+              value={this.state.textREnd}
               className="slider"
-              onChange={evt => this.updateTextHueEnd(evt)}
+              onChange={evt => this.updateTextREnd(evt)}
             />
           </div>
           <div className="panelElem">
-            Saturation:
+            Green:
             <br />
             <span className="readOut">
               <input
                 type="text"
-                value={this.state.textSatBeg}
-                onChange={evt => this.updateTextSatBeg(evt)}
+                value={this.state.textGBeg}
+                onChange={evt => this.updateTextGBeg(evt)}
               />
               :
               <input
                 type="text"
                 readonly="readonly"
                 user-select="none"
-                value={Math.round(this.state.textSatCur)}
+                value={Math.round(this.state.textGCur)}
               />
               :
               <input
                 type="text"
-                value={this.state.textSatEnd}
-                onChange={evt => this.updateTextSatEnd(evt)}
+                value={this.state.textGEnd}
+                onChange={evt => this.updateTextGEnd(evt)}
               />
             </span>
             <br />
             <input
               type="range"
-              min="1"
-              max="100"
-              value={this.state.textSatBeg}
+              min="0"
+              max="255"
+              value={this.state.textGBeg}
               className="slider"
               id="bgSat"
-              onChange={evt => this.updateTextSatBeg(evt)}
+              onChange={evt => this.updateTextGBeg(evt)}
             />
             <br />
             <input
               type="range"
-              min="1"
-              max="100"
-              value={this.state.textSatEnd}
+              min="0"
+              max="255"
+              value={this.state.textGEnd}
               className="slider"
               id="bgSat"
-              onChange={evt => this.updateTextSatEnd(evt)}
+              onChange={evt => this.updateTextGEnd(evt)}
             />
           </div>
           <div className="panelElem">
-            Luminance:
+            Blue:
             <br />
             <span className="readOut">
               <input
                 type="text"
-                value={this.state.textLumBeg}
-                onChange={evt => this.updateTextLumBeg(evt)}
+                value={this.state.textBBeg}
+                onChange={evt => this.updateTextBBeg(evt)}
               />
               :
               <input
                 type="text"
                 readonly="readonly"
                 user-select="none"
-                value={Math.round(this.state.textLumCur)}
+                value={Math.round(this.state.textBCur)}
               />
               :
               <input
                 type="text"
-                value={this.state.textLumEnd}
-                onChange={evt => this.updateTextLumEnd(evt)}
+                value={this.state.textBEnd}
+                onChange={evt => this.updateTextBEnd(evt)}
               />
             </span>
             <br />
             <input
               type="range"
-              min="1"
-              max="100"
-              value={this.state.textLumBeg}
+              min="0"
+              max="255"
+              value={this.state.textBBeg}
               className="slider"
               id="bgLum"
-              onChange={evt => this.updateTextLumBeg(evt)}
+              onChange={evt => this.updateTextBBeg(evt)}
             />
             <br />
             <input
               type="range"
-              min="1"
-              max="100"
-              value={this.state.textLumEnd}
+              min="0"
+              max="255"
+              value={this.state.textBEnd}
               className="slider"
               id="bgLum"
-              onChange={evt => this.updateTextLumEnd(evt)}
+              onChange={evt => this.updateTextBEnd(evt)}
             />
           </div>
           <div className="panelElem">
@@ -519,6 +529,41 @@ class VRScene extends React.Component {
             />
           </div>
           <div className="panelElem">
+            Playback Range:
+            <br />
+            <span className="readOut">
+              <input type="text" value={this.state.frameBeg} />
+              <input
+                type="text"
+                value={this.state.frameCur}
+                onChange={evt => this.frameCur(evt)}
+              />
+              <input
+                type="text"
+                value={this.state.frameEnd}
+                onChange={evt => this.updateFrameEnd(evt)}
+              />
+            </span>
+            <br />
+            <input
+              type="range"
+              min="0"
+              max="300"
+              value={this.state.frameBeg}
+              className="slider"
+              onChange={evt => this.updateFrameBeg(evt)}
+            />
+            <br />
+            <input
+              type="range"
+              min={-1 * this.state.frameLength}
+              max="0"
+              value={this.state.frameEnd}
+              className="slider"
+              onChange={evt => this.updateFrameEnd(evt)}
+            />
+          </div>
+          <div className="panelElem">
             In/Out:
             <br />
             <input
@@ -558,11 +603,11 @@ class VRScene extends React.Component {
               text-geometry={`curveSegments:3;height:${
                 this.state.textHeightCur
               };size:1.5;font: #optimerBoldFont;value:${this.state.inputValue}`}
-              material={`color: hsla(${this.state.textHueCur}, ${
-                this.state.textSatCur
-              }%, ${
-                this.state.textLumCur
-              }%); metalness:0.0;roughness:0.25;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
+              material={`color: rgb(${Math.round(
+                this.state.textRCur
+              )}, ${Math.round(this.state.textGCur)}, ${Math.round(
+                this.state.textBCur
+              )}); metalness:0.0;roughness:0.25;sphericalEnvMap:https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg"`}
             />
           </Scene>
         </div>
@@ -576,3 +621,9 @@ class VRScene extends React.Component {
 
 //ReactDOM.render(<VRScene/>, document.querySelector('#sceneContainer'));
 export default VRScene;
+
+// ${Math.round(this.state.textRCur)}, ${
+//   Math.round(this.state.textGCur)
+// }, ${
+//   Math.round(this.state.textBCur)
+// }
