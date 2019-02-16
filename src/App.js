@@ -16,23 +16,49 @@ class VRScene extends React.Component {
       inputValue: "Chaz Wilson",
       vueIsIn: true,
       isPlaying: true,
+      textHeightBeg: 0,
+      textHeightEnd: 17,
       frameBeg: 0,
       frameEnd: 0,
       frameLength: 90,
+      // Red Control
+      textRDef: 128,
       textRBeg: 84,
-      textGBeg: 255,
-      textBBeg: 255,
       textREnd: 244,
-      textGEnd: 171,
+      // Green Control
+      textGDef: 128,
+      textGBeg: 255,
+      textGEnd: 103,
+      // Blue Channel
+      textBDef: 128,
+      textBBeg: 255,
       textBEnd: 255,
-      textHeightBeg: 0,
-      textHeightEnd: 17,
+      // Horizontal
+      textAlignXDef: 0,
       textAlignXBeg: -6,
       textAlignXEnd: -6,
+      // Vertical
+      textAlignYDef: 0,
       textAlignYBeg: 6,
       textAlignYEnd: -2,
+      // Zoom
+      textAlignZDef: 0,
       textAlignZBeg: 25,
-      textAlignZEnd: -23
+      textAlignZEnd: -23,
+      textHeightEnd: 17,
+      // Pitch
+      textRotXDef: 0,
+      textRotXBeg: 0,
+      textRotXEnd: 0,
+      // Yaw
+      textRotYDef: 0,
+      textRotYBeg: 0,
+      textRotYEnd: 0,
+      // Roll
+      textRotZDef: 0,
+      textRotZBeg: 0,
+      textRotZEnd: 0,
+      fontURL: "https://fonts.googleapis.com/css?family=Poppins"
     };
     this.updateAllValues = this.updateAllValues.bind(this);
     this.updateVueIsIn = this.updateVueIsIn.bind(this);
@@ -79,6 +105,21 @@ class VRScene extends React.Component {
         Number(this.state.textAlignZBeg) -
         ((this.state.textAlignZBeg - this.state.textAlignZEnd) /
           this.state.frameLength) *
+          this.state.frameCur,
+      textRotXCur:
+        Number(this.state.textRotXBeg) -
+        ((this.state.textRotXBeg - this.state.textRotXEnd) /
+          this.state.frameLength) *
+          this.state.frameCur,
+      textRotYCur:
+        Number(this.state.textRotYBeg) -
+        ((this.state.textRotYBeg - this.state.textRotYEnd) /
+          this.state.frameLength) *
+          this.state.frameCur,
+      textRotZCur:
+        Number(this.state.textRotZBeg) -
+        ((this.state.textRotZBeg - this.state.textRotZEnd) /
+          this.state.frameLength) *
           this.state.frameCur
     });
     console.log(this.state.textAlignZCur);
@@ -96,7 +137,10 @@ class VRScene extends React.Component {
           textHeightCur: this.state.textHeightBeg,
           textAlignXCur: this.state.textAlignXBeg,
           textAlignYCur: this.state.textAlignYBeg,
-          textAlignZCur: this.state.textAlignZBeg
+          textAlignZCur: this.state.textAlignZBeg,
+          textRotXCur: this.state.textRotXBeg,
+          textRotYCur: this.state.textRotYBeg,
+          textRotZCur: this.state.textRotZBeg
         });
       } else {
         this.setState({
@@ -106,7 +150,10 @@ class VRScene extends React.Component {
           textHeightCur: this.state.textHeightEnd,
           textAlignXCur: this.state.textAlignXEnd,
           textAlignYCur: this.state.textAlignYEnd,
-          textAlignZCur: this.state.textAlignZEnd
+          textAlignZCur: this.state.textAlignZEnd,
+          textRotXCur: this.state.textRotXEnd,
+          textRotYCur: this.state.textRotYEnd,
+          textRotZCur: this.state.textRotZEnd
         });
       }
     }
@@ -202,6 +249,36 @@ class VRScene extends React.Component {
       textAlignZEnd: evt.target.value * -1
     });
   }
+  updateTextRotXBeg(evt) {
+    this.setState({
+      textRotXBeg: evt.target.value
+    });
+  }
+  updateTextRotXEnd(evt) {
+    this.setState({
+      textRotXEnd: evt.target.value
+    });
+  }
+  updateTextRotYBeg(evt) {
+    this.setState({
+      textRotYBeg: evt.target.value
+    });
+  }
+  updateTextRotYEnd(evt) {
+    this.setState({
+      textRotYEnd: evt.target.value
+    });
+  }
+  updateTextRotZBeg(evt) {
+    this.setState({
+      textRotZBeg: evt.target.value
+    });
+  }
+  updateTextRotZEnd(evt) {
+    this.setState({
+      textRotZEnd: evt.target.value
+    });
+  }
   updateTextHeightBeg(evt) {
     this.setState({
       textHeightBeg: Number(evt.target.value)
@@ -230,7 +307,7 @@ class VRScene extends React.Component {
               />
             </div>
             <div className="panelElem">
-              Font:
+              <strike>Font:</strike>
               <br />
             </div>
             <div className="panelElem">
@@ -298,13 +375,16 @@ class VRScene extends React.Component {
                   type="text"
                   value={this.state.textAlignXEnd}
                   onChange={evt => this.updateTextAlignXEnd(evt)}
+                  onClick={console.log(
+                    "SuCces!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                  )}
                 />
               </span>
               <br />
               <input
                 type="range"
-                min="-30"
-                max="30"
+                min="-60"
+                max="60"
                 value={this.state.textAlignXBeg}
                 className="slider"
                 onChange={evt => this.updateTextAlignXBeg(evt)}
@@ -312,8 +392,8 @@ class VRScene extends React.Component {
               <br />
               <input
                 type="range"
-                min="-30"
-                max="30"
+                min="-60"
+                max="60"
                 value={this.state.textAlignXEnd}
                 className="slider"
                 onChange={evt => this.updateTextAlignXEnd(evt)}
@@ -343,8 +423,8 @@ class VRScene extends React.Component {
               </span>
               <input
                 type="range"
-                min="-30"
-                max="30"
+                min="-60"
+                max="60"
                 value={this.state.textAlignYBeg}
                 className="slider"
                 onChange={evt => this.updateTextAlignYBeg(evt)}
@@ -352,16 +432,15 @@ class VRScene extends React.Component {
               <br />
               <input
                 type="range"
-                min="-30"
-                max="30"
+                min="-60"
+                max="60"
                 value={this.state.textAlignYEnd}
                 className="slider"
                 onChange={evt => this.updateTextAlignYEnd(evt)}
               />
             </div>
             <div className="panelElem">
-              Zoom:
-              <br />
+              Zoom: <br />
               <span className="readOut">
                 <input
                   type="text"
@@ -382,11 +461,10 @@ class VRScene extends React.Component {
                   onChange={evt => this.updateTextAlignZEnd(evt)}
                 />
               </span>
-              <br />
               <input
                 type="range"
-                min="-110"
-                max="50"
+                min="-30"
+                max="30"
                 value={this.state.textAlignZBeg * -1}
                 className="slider"
                 onChange={evt => this.updateTextAlignZBeg(evt)}
@@ -394,11 +472,137 @@ class VRScene extends React.Component {
               <br />
               <input
                 type="range"
-                min="-110"
-                max="50"
+                min="-30"
+                max="30"
                 value={this.state.textAlignZEnd * -1}
                 className="slider"
                 onChange={evt => this.updateTextAlignZEnd(evt)}
+              />
+            </div>
+          </div>
+          <div className="subPanel">
+            <div className="panelElem">
+              Pitch:
+              <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.textRotXBeg}
+                  onChange={evt => this.updateTextRotXBeg(evt)}
+                />
+                :
+                <input
+                  type="text"
+                  readonly="readonly"
+                  user-select="none"
+                  value={Math.round(this.state.textRotXCur)}
+                />
+                :
+                <input
+                  type="text"
+                  value={this.state.textRotXEnd}
+                  onChange={evt => this.updateTextRotXEnd(evt)}
+                />
+              </span>
+              <br />
+              <input
+                type="range"
+                min="-360"
+                max="360"
+                value={this.state.textRotXBeg}
+                className="slider"
+                onChange={evt => this.updateTextRotXBeg(evt)}
+              />
+              <br />
+              <input
+                type="range"
+                min="-360"
+                max="360"
+                value={this.state.textRotXEnd}
+                className="slider"
+                onChange={evt => this.updateTextRotXEnd(evt)}
+              />
+            </div>
+            <div className="panelElem">
+              Yaw: <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.textRotYBeg}
+                  onChange={evt => this.updateTextRotYBeg(evt)}
+                />
+                :
+                <input
+                  type="text"
+                  readonly="readonly"
+                  user-select="none"
+                  value={Math.round(this.state.textRotYCur)}
+                />
+                :
+                <input
+                  type="text"
+                  value={this.state.textRotYEnd}
+                  onChange={evt => this.updateTextRotYEnd(evt)}
+                />
+              </span>
+              <input
+                type="range"
+                min="-360"
+                max="360"
+                value={this.state.textRotYBeg}
+                className="slider"
+                onChange={evt => this.updateTextRotYBeg(evt)}
+              />
+              <br />
+              <input
+                type="range"
+                min="-360"
+                max="360"
+                value={this.state.textRotYEnd}
+                className="slider"
+                onChange={evt => this.updateTextRotYEnd(evt)}
+              />
+            </div>
+            <div className="panelElem">
+              Roll:
+              <br />
+              <span className="readOut">
+                <input
+                  type="text"
+                  value={this.state.textRotZBeg}
+                  onChange={evt => this.updateTextRotZBeg(evt)}
+                />
+                :
+                <input
+                  type="text"
+                  readonly="readonly"
+                  user-select="none"
+                  value={Math.round(this.state.textRotZCur)}
+                />
+                :
+                <input
+                  type="text"
+                  value={this.state.textRotZEnd}
+                  onChange={evt => this.updateTextRotZEnd(evt)}
+                />
+              </span>
+              <br />
+              <input
+                type="range"
+                min="-360"
+                max="360"
+                value={this.state.textRotZBeg}
+                className="slider"
+                onChange={evt => this.updateTextRotZBeg(evt)}
+              />
+              <br />
+              <input
+                type="range"
+                min="-360"
+                max="360"
+                value={this.state.textRotZEnd}
+                className="slider"
+                onChange={evt => this.updateTextRotZEnd(evt)}
               />
             </div>
           </div>
@@ -619,13 +823,21 @@ class VRScene extends React.Component {
             <a-assets>
               <a-asset-item
                 id="optimerBoldFont"
+                //src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/gentilis_bold.typeface.json"
+                //src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/gentilis_regular.typeface.json"
+                // src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/helvetiker_bold.typeface.json"
+                //src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/helvetiker_regular.typeface.json"
                 src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"
+                // src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_regular.typeface.json"
               />
             </a-assets>
             <Entity
               position={`${this.state.textAlignXCur} ${
                 this.state.textAlignYCur
               } ${this.state.textHeightCur * -1 - this.state.textAlignZCur}`}
+              rotation={`${this.state.textRotXCur} ${this.state.textRotYCur} ${
+                this.state.textRotZCur
+              }`}
               text-geometry={`curveSegments:3;height:${
                 this.state.textHeightCur
               };size:1.5;font: #optimerBoldFont;value:${this.state.inputValue}`}
@@ -645,5 +857,7 @@ class VRScene extends React.Component {
   }
 }
 
-//ReactDOM.render(<VRScene/>, document.querySelector('#sceneContainer'));
+{
+  /* </div>ReactDOM.render(<VRScene/>, document.querySelector('#sceneContainer')); */
+}
 export default VRScene;
