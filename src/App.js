@@ -16,9 +16,11 @@ class VRScene extends React.Component {
       inputValue: "Chaz Wilson",
       vueIsIn: true,
       isPlaying: true,
+      playbackMode: "backward",
       textHeightBeg: 0,
       textHeightEnd: 17,
       frameBeg: 0,
+      frameCur: 0,
       frameEnd: 0,
       frameLength: 90,
       // Red Control
@@ -60,10 +62,10 @@ class VRScene extends React.Component {
       textRotZEnd: 0,
       fontURL: "https://fonts.googleapis.com/css?family=Poppins"
     };
-    this.updateAllValues = this.updateAllValues.bind(this);
+    this.updatePlaybackState = this.updatePlaybackState.bind(this);
     this.updateVueIsIn = this.updateVueIsIn.bind(this);
   }
-  playFun() {
+  playForwardFun() {
     if (this.state.frameCur < this.state.frameLength + this.state.frameEnd) {
       this.setState({
         frameCur: this.state.frameCur + 1
@@ -73,6 +75,23 @@ class VRScene extends React.Component {
         frameCur: this.state.frameBeg
       });
     }
+    this.drawFrame();
+  }
+
+  playBackwardFun() {
+    if (this.state.frameCur > 0 + this.state.frameBeg) {
+      this.setState({
+        frameCur: this.state.frameCur - 1
+      });
+    } else {
+      this.setState({
+        frameCur: this.state.frameLength - this.state.frameEnd
+      });
+    }
+    this.drawFrame();
+  }
+
+  drawFrame() {
     this.setState({
       textRCur:
         Number(this.state.textRBeg) -
@@ -122,40 +141,20 @@ class VRScene extends React.Component {
           this.state.frameLength) *
           this.state.frameCur
     });
-    console.log(this.state.textAlignZCur);
   }
 
-  updateAllValues(evt) {
-    if (this.state.isPlaying === true) {
-      this.playFun();
-    } else {
-      if (this.state.vueIsIn === true) {
-        this.setState({
-          textRCur: this.state.textRBeg,
-          textGCur: this.state.textGBeg,
-          textBCur: this.state.textBBeg,
-          textHeightCur: this.state.textHeightBeg,
-          textAlignXCur: this.state.textAlignXBeg,
-          textAlignYCur: this.state.textAlignYBeg,
-          textAlignZCur: this.state.textAlignZBeg,
-          textRotXCur: this.state.textRotXBeg,
-          textRotYCur: this.state.textRotYBeg,
-          textRotZCur: this.state.textRotZBeg
-        });
-      } else {
-        this.setState({
-          textRCur: this.state.textREnd,
-          textGCur: this.state.textGEnd,
-          textBCur: this.state.textBEnd,
-          textHeightCur: this.state.textHeightEnd,
-          textAlignXCur: this.state.textAlignXEnd,
-          textAlignYCur: this.state.textAlignYEnd,
-          textAlignZCur: this.state.textAlignZEnd,
-          textRotXCur: this.state.textRotXEnd,
-          textRotYCur: this.state.textRotYEnd,
-          textRotZCur: this.state.textRotZEnd
-        });
-      }
+  updatePlaybackState(evt) {
+    if (
+      this.state.isPlaying === true &&
+      this.state.playbackMode === "forward"
+    ) {
+      this.playForwardFun();
+    }
+    if (
+      this.state.isPlaying === true &&
+      this.state.playbackMode === "backward"
+    ) {
+      this.playBackwardFun();
     }
   }
   updateVueIsIn(evt) {
@@ -180,8 +179,8 @@ class VRScene extends React.Component {
   }
   updateIsPlaying(evt) {
     this.setState({
-      isPlaying: !this.state.isPlaying,
-      frameCur: this.state.frameBeg
+      isPlaying: !this.state.isPlaying
+      //frameCur: this.state.frameBeg
     });
   }
   updateInputValue(evt) {
@@ -290,7 +289,7 @@ class VRScene extends React.Component {
     });
   }
   componentDidMount() {
-    setInterval(this.updateAllValues, 33);
+    setInterval(this.updatePlaybackState, 33);
   }
   render() {
     return (
