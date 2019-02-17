@@ -12,7 +12,7 @@ class VRScene extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: "This Text Moves",
+      inputValue: "Move The Sliders",
       isPlaying: true,
       playbackMode: "forward",
       textHeightBeg: 0,
