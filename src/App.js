@@ -1,5 +1,4 @@
 import "aframe";
-import "aframe-particle-system-component";
 import "aframe-text-geometry-component";
 import "aframe-effects";
 import { Entity, Scene } from "aframe-react";
@@ -13,38 +12,38 @@ class VRScene extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: "Chaz Wilson",
+      inputValue: "This Text Moves",
       isPlaying: true,
       playbackMode: "forward",
       textHeightBeg: 0,
-      textHeightEnd: 14,
+      textHeightEnd: 5,
       frameBeg: 0,
       frameCur: 0,
       frameEnd: 0,
-      frameLength: 90,
+      frameLength: 180,
       // Red Control
       textRDef: 128,
       textRBeg: 84,
       textREnd: 244,
       // Green Control
       textGDef: 128,
-      textGBeg: 255,
-      textGEnd: 103,
+      textGBeg: 199,
+      textGEnd: 130,
       // Blue Channel
       textBDef: 128,
       textBBeg: 255,
       textBEnd: 255,
       // Horizontal
       textAlignXDef: 0,
-      textAlignXBeg: -6,
-      textAlignXEnd: -6,
+      textAlignXBeg: -9,
+      textAlignXEnd: -9,
       // Vertical
       textAlignYDef: 0,
       textAlignYBeg: 6,
-      textAlignYEnd: -2,
-      // Zoom
+      textAlignYEnd: 0,
+      // Distance
       textAlignZDef: 0,
-      textAlignZBeg: 25,
+      textAlignZBeg: 100,
       textAlignZEnd: -23,
       // Pitch
       textRotXDef: 0,
@@ -52,11 +51,11 @@ class VRScene extends React.Component {
       textRotXEnd: 0,
       // Yaw
       textRotYDef: 0,
-      textRotYBeg: 0,
+      textRotYBeg: 3,
       textRotYEnd: 0,
       // Roll
       textRotZDef: 0,
-      textRotZBeg: 0,
+      textRotZBeg: -4,
       textRotZEnd: 0,
       fontURL: "https://fonts.googleapis.com/css?family=Poppins"
     };
