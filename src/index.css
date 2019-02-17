@@ -74,6 +74,11 @@ body {
   width: 100%;
 }
 
+.radioLeft input {
+  text-align: left;
+  display: inline;
+}
+
 input[type="range"] {
   -webkit-appearance: none;
   width: 100%;

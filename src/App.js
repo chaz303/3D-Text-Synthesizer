@@ -14,11 +14,10 @@ class VRScene extends React.Component {
     super(props);
     this.state = {
       inputValue: "Chaz Wilson",
-      vueIsIn: true,
       isPlaying: true,
-      playbackMode: "backward",
+      playbackMode: "forward",
       textHeightBeg: 0,
-      textHeightEnd: 17,
+      textHeightEnd: 14,
       frameBeg: 0,
       frameCur: 0,
       frameEnd: 0,
@@ -47,7 +46,6 @@ class VRScene extends React.Component {
       textAlignZDef: 0,
       textAlignZBeg: 25,
       textAlignZEnd: -23,
-      textHeightEnd: 17,
       // Pitch
       textRotXDef: 0,
       textRotXBeg: 0,
@@ -63,7 +61,6 @@ class VRScene extends React.Component {
       fontURL: "https://fonts.googleapis.com/css?family=Poppins"
     };
     this.updatePlaybackState = this.updatePlaybackState.bind(this);
-    this.updateVueIsIn = this.updateVueIsIn.bind(this);
   }
   playForwardFun() {
     if (this.state.frameCur < this.state.frameLength + this.state.frameEnd) {
@@ -85,7 +82,7 @@ class VRScene extends React.Component {
       });
     } else {
       this.setState({
-        frameCur: this.state.frameLength - this.state.frameEnd
+        frameCur: this.state.frameLength + this.state.frameEnd
       });
     }
     this.drawFrame();
@@ -155,12 +152,9 @@ class VRScene extends React.Component {
       this.state.playbackMode === "backward"
     ) {
       this.playBackwardFun();
+    } else {
+      this.drawFrame();
     }
-  }
-  updateVueIsIn(evt) {
-    this.setState({
-      vueIsIn: !this.state.vueIsIn
-    });
   }
   updateFrameBeg(evt) {
     this.setState({
@@ -181,6 +175,11 @@ class VRScene extends React.Component {
     this.setState({
       isPlaying: !this.state.isPlaying
       //frameCur: this.state.frameBeg
+    });
+  }
+  updatePlaybackMode(evt) {
+    this.setState({
+      playbackMode: evt.target.value
     });
   }
   updateInputValue(evt) {
@@ -374,9 +373,6 @@ class VRScene extends React.Component {
                   type="text"
                   value={this.state.textAlignXEnd}
                   onChange={evt => this.updateTextAlignXEnd(evt)}
-                  onClick={console.log(
-                    "SuCces!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                  )}
                 />
               </span>
               <br />
@@ -439,7 +435,7 @@ class VRScene extends React.Component {
               />
             </div>
             <div className="panelElem">
-              Zoom: <br />
+              Distance: <br />
               <span className="readOut">
                 <input
                   type="text"
@@ -791,17 +787,40 @@ class VRScene extends React.Component {
                 onChange={evt => this.updateFrameLength(evt)}
               />
             </div>
+          </div>
+          <div className="subPanel">
             <div className="panelElem">
-              In/Out:
+              Playback Mode:
               <br />
-              <input
+              <div className="radioLeft">
+                Forward:
+                <input
+                  type="radio"
+                  name="playbackmode"
+                  value="forward"
+                  checked={
+                    this.state.playbackMode === "forward" ? "checked" : null
+                  }
+                  onChange={evt => this.updatePlaybackMode(evt)}
+                />
+                Backward:
+                <input
+                  type="radio"
+                  name="playbackmode"
+                  value="backward"
+                  checked={
+                    this.state.playbackMode === "backward" ? "checked" : null
+                  }
+                  onChange={evt => this.updatePlaybackMode(evt)}
+                />
+              </div>
+              {/* <input
                 type="checkbox"
                 onChange={evt => this.updateVueIsIn(evt)}
                 checked={this.state.vueIsIn ? "checked" : null}
-              />
+              /> */}
               <br />
-              <br />
-              Play/Stop:
+              Play/Pause:
               <br />
               <input
                 type="checkbox"
