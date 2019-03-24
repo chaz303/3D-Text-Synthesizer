@@ -2,7 +2,7 @@
 
 3D Text Synthesizer is a program to make your text _fun_ and _exciting_. It is inspired by the television graphics of the late-seventies through mid-eighties; typically made with low powered computers and analog video synthesizers (such as the Scanimate).
 
-This project was made using Javascript, React and Redux.
+This project was made using Javascript, A-Frame, React and Redux.
 
 ### How to Install
 
