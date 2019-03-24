@@ -4,8 +4,8 @@
 
 This project was made using Javascript, A-Frame, React and Redux.
 <p float="left">
-<img src="./img/logos/A-Frame_logo.png" height="75">
-<img src="./img/logos/react.png" height="80">
+<img src="./img/logos/A-Frame_logo.png" height="75">&nbsp; &nbsp; &nbsp; &nbsp;
+<img src="./img/logos/react.png" height="80">&nbsp; &nbsp; &nbsp; &nbsp;
 <img src="./img/logos/redux.png" height="65">
 </p>
 
