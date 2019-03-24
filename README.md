@@ -4,9 +4,9 @@
 
 This project was made using Javascript, A-Frame, React and Redux.
 
-<img src="./img/logos/A-Frame_logo.png" height="75">
-<img src="./img/logos/1280px-Redux_Logo.png" height="75">
-<img src="./img/logos/1024px-React-icon.svg.png" height="75">
+<img float="left" src="./img/logos/A-Frame_logo.png" height="75">
+<img float="left" src="./img/logos/1280px-Redux_Logo.png" height="75">
+<img float="left" src="./img/logos/1024px-React-icon.svg.png" height="75">
 
 ### How to Install
 
