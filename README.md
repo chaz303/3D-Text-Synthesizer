@@ -1,5 +1,3 @@
-This was made at my time at Code Chrysalis.
-
 ## About 3D Text Synthesizer
 
 3D Text Synthesizer is a program to make your text _fun_ and _exciting_. It is inspired by the television graphics of the late-seventies through mid-eighties; typically made with low powered computers and analog video synthesizers (such as the Scanimate).
