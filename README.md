@@ -1,6 +1,6 @@
 ## About 3D Text Synthesizer
 
-3D Text Synthesizer is a program to make your text _fun_ and _exciting_. It is inspired by the television graphics of the late-seventies through mid-eighties; typically made with low powered computers and analog video synthesizers (such as the Scanimate).
+3D Text Synthesizer is deigned to make animating text easy and fun. It is inspired by the television graphics of the late-seventies through mid-eighties; typically made with low powered computers and analog video synthesizers (such as the Scanimate).
 
 This project was made using Javascript, A-Frame, React and Redux.
 <p float="left" align="center">
@@ -20,9 +20,11 @@ You will need to have yarn installed in order to follow these directions.
 
 ### How to Use
 
-The idea behind this app is to make animating text as easy and fun as possible. Below the text prompt enter your text. Adjust the upper "Horizontal" slider as needed to center the text (if desired). The upper "Horizontal" slider is the starting horizontal value and the lower "Horizontal" slider is the ending horizontal value. When played 3D Text Synthesizer will make animate between those two values. The same can be done with all of the settings available.
-
-The "In/Out" toggle toggles between the start and end positions for all of the settings.
+* Below the text prompt enter your text. By default it reads "Move the Sliders."
+* Adjust the upper "Horizontal" slider as needed to center the text (then make the lower "Horizontal" value the same as the upper one.).
+   * The upper "Horizontal" slider is the starting horizontal value and the lower "Horizontal" slider is the ending horizontal value. If the values of both are the same, then there will be no change.
+   
+* When played 3D Text Synthesizer will make animate the changes between any and all of the upper and lower slider value pairs.
 
 ### Screenshots
 
