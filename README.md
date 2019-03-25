@@ -20,7 +20,7 @@ You will need to have yarn installed in order to follow these directions.
 
 ### How to Use
 
-* Below the text prompt enter your text. By default it reads "Move the Sliders."
+* Below the text prompt (in the upper left corner) enter your text. By default it reads "Move the Sliders."
 * Adjust the upper "Horizontal" slider as needed to center the text (then make the lower "Horizontal" value the same as the upper one.).
    * The upper "Horizontal" slider is the starting horizontal value and the lower "Horizontal" slider is the ending horizontal value. If the values of both are the same, then there will be no change.
    
