@@ -3,11 +3,11 @@
 3D Text Synthesizer is deigned to make animating text easy and fun. It is inspired by the television graphics of the late-seventies through mid-eighties; typically made with low powered computers and analog video synthesizers (such as the Scanimate).
 
 This project was made using Javascript, A-Frame, React and Redux.
-<p float="left" align="center">
+<div float="left" align="center">
 <img src="./img/logos/A-Frame_logo.png" height="115">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 <img src="./img/logos/react.png" height="115">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 <img src="./img/logos/redux.png" height="115">
-</p>
+</div>
 
 ### How to Install
 
@@ -28,8 +28,9 @@ You will need to have yarn installed in order to follow these directions.
 
 ### Screenshots
 
-<p align="center">
+<div align="center">
 <img src="./img/3d-text-synth.png"><br><br>
-<img src="./img/3d-text-synth1.gif">&nbsp; &nbsp; &nbsp; &nbsp; 
+<img src="./img/3d-text-synth1.gif"><br><br>
 <img src="./img/3d-text-synth2.gif">
-</p>
+</div>
+* Note: stuttering in last image is from the gif encoder, not the application itself.
