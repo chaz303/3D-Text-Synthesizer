@@ -27,10 +27,7 @@ The "In/Out" toggle toggles between the start and end positions for all of the s
 ### Screenshots
 
 <p align="center">
-<img src="./img/screenshot1.png"><br><br>
-<img src="./img/screenshot2.png"><br><br>
-<img src="./img/screenshot3.png"><br><br>
-<img src="./img/screenshot4.png"><br><br>
-<img src="./img/screenshot5.png"><br><br>
-<img src="./img/screenshot6.png">
+<img src="./img/3d-text-synth.png"><br><br>
+<img src="./img/3d-text-synth1.gif">&nbsp; &nbsp; &nbsp; &nbsp; 
+<img src="./img/3d-text-synth2.gif">
 </p>
