@@ -26,7 +26,7 @@ You will need to have yarn installed in order to follow these directions.
    
 * When played 3D Text Synthesizer will make animate the changes between any and all of the upper and lower slider value pairs.
 
-* Sliders can be updated while 3D Text Synthesizer is playing for instant feedback.
+* Sliders can be moved while 3D Text Synthesizer is playing - providing an interactice experience.
 
 ### Screenshots
 
