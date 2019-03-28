@@ -26,14 +26,16 @@ You will need to have yarn installed in order to follow these directions.
    
 * When played 3D Text Synthesizer will make animate the changes between any and all of the upper and lower slider value pairs.
 
+* Sliders can be moved while 3D Text Synthesizer is playing - providing an interactice experience.
+
 ### Screenshots
 
 <table width="width:100%">
-  <tr>
-   <td align="center"><img src="./img/3d-text-synth1.gif"></td>
-   <td align="center"><img src="./img/3d-text-synth2.gif"></td>
-   </tr>
    <tr><td colspan="2" align="center">
 <img src="./img/3d-text-synth.png">
  </td></tr>
+    <tr>
+   <td align="center"><img src="./img/3d-text-synth1.gif"></td>
+   <td align="center"><img src="./img/3d-text-synth2.gif"></td>
+   </tr>
  </table>
