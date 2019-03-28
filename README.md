@@ -28,9 +28,12 @@ You will need to have yarn installed in order to follow these directions.
 
 ### Screenshots
 
-<div align="center">
-<img src="./img/3d-text-synth.png"><br><br>
-<img src="./img/3d-text-synth1.gif"><br><br>
-<img src="./img/3d-text-synth2.gif">
-</div>
-* Note: stuttering in last image is from the gif encoder, not the application itself.
+<table width="width:100%">
+  <tr>
+   <td align="center"><img src="./img/3d-text-synth1.gif"></td>
+   <td align="center"><img src="./img/3d-text-synth2.gif"></td>
+   </tr>
+   <tr><td colspan="2" align="center">
+<img src="./img/3d-text-synth.png">
+ </td></tr>
+ </table>
